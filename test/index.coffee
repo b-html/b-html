@@ -3,6 +3,12 @@ bHtml = require '../src/'
 
 describe 'index', ->
   it 'works', ->
+    html = bHtml '\n'
+    assert html is ''
+
+    html = bHtml '<p\n'
+    assert html is '<p></p>'
+
     html = bHtml '''
       <p
     '''

@@ -41,6 +41,7 @@ parse = (s) ->
   root.parent = root
   prev = root
   s.split(/\n/).forEach (line) ->
+    return if line.trim().length is 0
     n = Node.parse line
     if n.level > prev.level
       if n.type is 'attribute'
