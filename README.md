@@ -1,6 +1,6 @@
-# bHTML
+# b-html
 
-bHTML is a little language that compiles into HTML.
+b-html is a little language that compiles into HTML.
 
 ## Installation
 
@@ -10,9 +10,9 @@ $ npm install b-html
 
 ## Syntax
 
-bHTML:
+b-html:
 
-```bhtml
+```b-html
 <div
   @class foo
   @id bar
@@ -34,7 +34,7 @@ Compiled: (formatted)
 ## Usage
 
 ```
-import bhtml from 'bhtml'
+import bHtml from 'b-html';
 
-bhtml('<p') === '<p></p>'
+bHtml('<p') === '<p></p>';
 ```
