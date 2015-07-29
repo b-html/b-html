@@ -20,6 +20,8 @@ b-html:
     title
   <p
     content
+    </img
+      @src /images/sample.png
 ```
 
 Compiled: (formatted)
@@ -27,7 +29,7 @@ Compiled: (formatted)
 ```html
 <div class="foo" id="bar">
   <h1>title</h1>
-  <p>content</p>
+  <p>content<img src="/images/sample.png" /></p>
 </div>
 ```
 
