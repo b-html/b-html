@@ -23,6 +23,12 @@
     "power-assert": "^0.11.0",
     "run-sequence": "^1.1.2"
   },
+  "files": [
+    "lib",
+    "index.js",
+    "package.json",
+    "README.md"
+  ],
   "homepage": "https://github.com/bouzuya/b-html#readme",
   "keywords": [
     "HTML"
