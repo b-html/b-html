@@ -27,6 +27,7 @@
     "lib",
     "index.js",
     "package.json",
+    "LICENSE",
     "README.md"
   ],
   "homepage": "https://github.com/bouzuya/b-html#readme",
@@ -40,9 +41,9 @@
     "url": "git+https://github.com/bouzuya/b-html.git"
   },
   "scripts": {
-    "prepublish": "gulp",
     "build": "gulp build",
     "clean": "gulp clean",
+    "prepublish": "gulp",
     "test": "gulp test",
     "watch": "gulp watch"
   }
