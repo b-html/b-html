@@ -33,7 +33,7 @@ Compiled: (formatted)
 
 ## Usage
 
-```
+```javascript
 import bHtml from 'b-html';
 
 bHtml('<p') === '<p></p>';
