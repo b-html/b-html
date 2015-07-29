@@ -1,6 +1,7 @@
-*.log
 .envrc
 .tmp
+*.log
 coverage
 dist
+lib
 node_modules

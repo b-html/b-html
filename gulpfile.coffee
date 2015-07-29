@@ -5,8 +5,8 @@ gulp = require 'gulp'
 gutil = require 'gulp-util'
 mocha = require 'gulp-mocha'
 run = require 'run-sequence'
-watch = require 'gulp-watch'
 sourcemaps = require 'gulp-sourcemaps'
+watch = require 'gulp-watch'
 
 dirs =
   dist: './lib/'                       # javascript files
@@ -34,8 +34,8 @@ gulp.task 'build(dev)', (done) ->
 
 gulp.task 'build:coffee', ->
   gulp.src dirs.src + '**/*.coffee'
-  .pipe coffee()
-  .pipe gulp.dest dirs.tmpSrc
+  .pipe coffee(bare: true)
+  .pipe gulp.dest dirs.dist
 
 gulp.task 'build:coffee(dev)', ->
   gulp.src dirs.src + '**/*.coffee'
