@@ -4,21 +4,30 @@ class Node
     @attributes = {}
     @children = []
 
-  @parse: (s) ->
-    match = s.match /^(\s*)(\S+)(?:\s+(.+))?$/
-    throw new Error() unless match?
-    [_, space, name, value] = match
-    type = if name.match(/^</)
+  @getName: (nameAndType) ->
+    type = @getType nameAndType
+    return nameAndType if type is 'text'
+    return nameAndType.substring(2) if type is 'empty element'
+    nameAndType.substring 1
+
+  @getType: (nameAndType) ->
+    if nameAndType.match(/^<\//)
+      'empty element'
+    else if nameAndType.match(/^</)
       'element'
-    else if name.match(/^@/)
+    else if nameAndType.match(/^@/)
       'attribute'
     else
       'text'
-    new Node
-      level: space.length
-      name: if type isnt 'text' then name.substring(1) else name
-      type: type
-      value: value
+
+  @parse: (s) ->
+    match = s.match /^(\s*)(\S+)(?:\s+(.+))?$/
+    throw new Error() unless match?
+    [_, space, nameAndType, value] = match
+    level = space.length
+    type = @getType nameAndType
+    name = @getName nameAndType
+    new Node { level, name, type, value }
 
   setAttribute: (name, value) ->
     @attributes[name] = value
@@ -37,7 +46,7 @@ parse = (s) ->
       if n.type is 'attribute'
         prev.setAttribute n.name, n.value
         n = prev # for `prev = n`
-      else if n.type is 'element'
+      else if n.type is 'element' or n.type is 'empty element'
         prev.appendChild n
       else if n.type is 'text'
         prev.appendChild n
@@ -46,7 +55,7 @@ parse = (s) ->
     else if n.level is prev.level
       if n.type is 'attribute'
         throw new Error()
-      else if n.type is 'element'
+      else if n.type is 'element' or n.type is 'empty element'
         prev.parent.appendChild n
       else if n.type is 'text'
         prev.parent.appendChild n
@@ -55,7 +64,7 @@ parse = (s) ->
     else if n.level < prev.level
       if n.type is 'attribute'
         throw new Error()
-      else if n.type is 'element'
+      else if n.type is 'element' or n.type is 'empty element'
         p = prev
         p = p.parent until p.level is n.level
         p.parent.appendChild n
@@ -69,7 +78,10 @@ parse = (s) ->
   root
 
 write = (n) ->
-  if n.type is 'element'
+  if n.type is 'empty element'
+    attributes = (" #{k}=\"#{v}\"" for k, v of n.attributes).join ''
+    '<' + n.name + attributes + ' />'
+  else if n.type is 'element'
     attributes = (" #{k}=\"#{v}\"" for k, v of n.attributes).join ''
     children = n.children.map(write).join('')
     '<' + n.name + attributes + '>' + children + '</' + n.name + '>'

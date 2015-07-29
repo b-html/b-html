@@ -77,3 +77,8 @@ describe 'index', ->
           c
     '''
     assert html is '<div><h1 a="v">t</h1><p>c</p></div>'
+
+    html = bHtml '''
+      </img
+    '''
+    assert html is '<img />'
