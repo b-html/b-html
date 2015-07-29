@@ -40,6 +40,16 @@ import bHtml from 'b-html';
 bHtml('<p') === '<p></p>';
 ```
 
+## Syntax Reference
+
+ Symbol | Type          | Examples
+--------|---------------|----------------------------------------------------
+ `<`    | Element       | `<p` -> `<p></p>`
+ `</`   | Empty Element | `</img` -> `<img />`
+ `@`    | Attribute     | `@class foo` -> `class="foo"`
+ `>`    | Text          | `>text` -> `text`<br />`><text` -> `<text`<br />`>@text` -> `@text`<br />`>>text` -> `>text`
+ others | Text         | `text` -> `text`
+
 ## License
 
 [MIT](LICENSE)
