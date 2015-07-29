@@ -1,0 +1,6 @@
+*.log
+.envrc
+.tmp
+coverage
+dist
+node_modules
