@@ -48,6 +48,25 @@ describe 'index', ->
 
     html = bHtml '''
       <p
+        >content
+    '''
+    assert html is '<p>content</p>'
+
+    html = bHtml '''
+      <p
+        >@content
+    '''
+    assert html is '<p>@content</p>'
+
+    html = bHtml '''
+      <p
+        >line1
+        >line2
+    '''
+    assert html is '<p>line1line2</p>'
+
+    html = bHtml '''
+      <p
         content
     '''
     assert html is '<p>content</p>'
@@ -58,13 +77,6 @@ describe 'index', ->
         line2
     '''
     assert html is '<p>line1line2</p>'
-
-    # TODO:
-    html = bHtml '''
-      <p
-        line1
-          line2
-    '''
 
     html = bHtml '''
       <p

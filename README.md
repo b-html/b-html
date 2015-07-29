@@ -15,11 +15,10 @@ b-html:
 ```b-html
 <div
   @class foo
-  @id bar
   <h1
     title
   <p
-    content
+    >@content
     </img
       @src /images/sample.png
 ```
@@ -27,9 +26,9 @@ b-html:
 Compiled: (formatted)
 
 ```html
-<div class="foo" id="bar">
+<div class="foo">
   <h1>title</h1>
-  <p>content<img src="/images/sample.png" /></p>
+  <p>@content<img src="/images/sample.png" /></p>
 </div>
 ```
 

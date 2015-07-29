@@ -4,29 +4,24 @@ class Node
     @attributes = {}
     @children = []
 
-  @getName: (nameAndType) ->
-    type = @getType nameAndType
-    return nameAndType if type is 'text'
-    return nameAndType.substring(2) if type is 'empty element'
-    nameAndType.substring 1
-
-  @getType: (nameAndType) ->
+  @parseNameAndType: (nameAndType) ->
     if nameAndType.match(/^<\//)
-      'empty element'
+      [nameAndType.substring(2), 'empty element']
     else if nameAndType.match(/^</)
-      'element'
+      [nameAndType.substring(1), 'element']
     else if nameAndType.match(/^@/)
-      'attribute'
+      [nameAndType.substring(1), 'attribute']
+    else if nameAndType.match(/^>/)
+      [nameAndType.substring(1), 'text']
     else
-      'text'
+      [nameAndType, 'text']
 
   @parse: (s) ->
     match = s.match /^(\s*)(\S+)(?:\s+(.+))?$/
     throw new Error() unless match?
     [_, space, nameAndType, value] = match
     level = space.length
-    type = @getType nameAndType
-    name = @getName nameAndType
+    [name, type] = @parseNameAndType nameAndType
     new Node { level, name, type, value }
 
   setAttribute: (name, value) ->
