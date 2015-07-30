@@ -1,3 +1,20 @@
+parseEmptyElement = (s) ->
+  if s.match(/^<\/\S+$/)
+    [s.substring(2), 'empty element']
+
+parseElement = (s) ->
+  if s.match(/^<\S+$/)
+    [s.substring(1), 'element']
+
+parseAttribute = (s) ->
+  m = s.match(/^@(\S+)\s+(.+)$/)
+  if m
+    [m[1], 'attribute', m[2]]
+
+parseText = (s) ->
+  if s.match(/^>.+$/)
+    [s.substring(1), 'text']
+
 class Node
   constructor: ({ @level, @name, @type, @value }) ->
     @parent = null
@@ -11,19 +28,10 @@ class Node
     level = space.length
     parsed = null
     [
-      (s) ->
-        if s.match(/^<\/\S+$/)
-          [s.substring(2), 'empty element']
-      (s) ->
-        if s.match(/^<\S+$/)
-          [s.substring(1), 'element']
-      (s) ->
-        m = s.match(/^@(\S+)\s+(.+)$/)
-        if m
-          [m[1], 'attribute', m[2]]
-      (s) ->
-        if s.match(/^>.+$/)
-          [s.substring(1), 'text']
+      parseEmptyElement
+      parseElement
+      parseAttribute
+      parseText
       (s) ->
         [s, 'text']
     ].some (f) ->
