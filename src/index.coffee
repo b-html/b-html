@@ -3,6 +3,16 @@ parseEmptyElement = (s) ->
     name: s.substring 2
     type: 'empty element'
     value: null
+    append: (prev) ->
+      if @level > prev.level
+        prev.appendChild @
+      else if @level is prev.level
+        prev.parent.appendChild @
+      else if @level < prev.level
+        p = prev
+        p = p.parent until p.level is @level
+        p.parent.appendChild @
+      @
     write: ->
       attributes = (" #{k}=\"#{v}\"" for k, v of @attributes).join ''
       '<' + @name + attributes + ' />'
@@ -12,6 +22,16 @@ parseElement = (s) ->
     name: s.substring 1
     type: 'element'
     value: null
+    append: (prev) ->
+      if @level > prev.level
+        prev.appendChild @
+      else if @level is prev.level
+        prev.parent.appendChild @
+      else if @level < prev.level
+        p = prev
+        p = p.parent until p.level is @level
+        p.parent.appendChild @
+      @
     write: ->
       attributes = (" #{k}=\"#{v}\"" for k, v of @attributes).join ''
       children = @children.map((i) -> i.write()).join('')
@@ -23,6 +43,12 @@ parseAttribute = (s) ->
     name: m[1]
     type: 'attribute'
     value: m[2]
+    append: (prev) ->
+      if @level > prev.level
+        prev.setAttribute @name, @value
+        prev
+      else
+        throw new Error()
     write: ->
       throw new Error()
 
@@ -31,6 +57,16 @@ parseText = (s) ->
     name: s.substring(1)
     type: 'text'
     value: null
+    append: (prev) ->
+      if @level > prev.level
+        prev.appendChild @
+      else if @level is prev.level
+        prev.parent.appendChild @
+      else if @level < prev.level
+        p = prev
+        p = p.parent until p.level is @level
+        p.parent.appendChild @
+      @
     write: ->
       @name
 
@@ -55,6 +91,16 @@ class Node
         name: s
         type: 'text'
         value: null
+        append: (prev) ->
+          if @level > prev.level
+            prev.appendChild @
+          else if @level is prev.level
+            prev.parent.appendChild @
+          else if @level < prev.level
+            p = prev
+            p = p.parent until p.level is @level
+            p.parent.appendChild @
+          @
         write: -> s
     ].some (f) ->
       parsed = f node
@@ -71,45 +117,7 @@ class Node
     n.parent = @
 
   appendTo: (prev) ->
-    if @level > prev.level
-      if @type is 'attribute'
-        prev.setAttribute @name, @value
-        return prev
-      else if @type is 'element' or @type is 'empty element'
-        prev.appendChild @
-        return @
-      else if @type is 'text'
-        prev.appendChild @
-        return @
-      else
-        throw new Error 'unknown type'
-    else if @level is prev.level
-      if @type is 'attribute'
-        throw new Error()
-      else if @type is 'element' or @type is 'empty element'
-        prev.parent.appendChild @
-        return @
-      else if @type is 'text'
-        prev.parent.appendChild @
-        return @
-      else
-        throw new Error 'unknown type'
-    else if @level < prev.level
-      if @type is 'attribute'
-        throw new Error()
-      else if @type is 'element' or @type is 'empty element'
-        p = prev
-        p = p.parent until p.level is @level
-        p.parent.appendChild @
-        return @
-      else if @type is 'text'
-        p = prev
-        p = p.parent until p.level is @level
-        p.parent.appendChild @
-        return @
-      else
-        throw new Error 'unknown type'
-    @
+    @parsed.append.apply @, [prev]
 
   write: ->
     @parsed.write.apply @, []
