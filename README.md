@@ -42,13 +42,14 @@ bHtml('<p') === '<p></p>';
 
 ## Syntax Reference
 
- Symbol | Type          | Examples
---------|---------------|----------------------------------------------------
- `<`    | Element       | `<p` -> `<p></p>`
- `</`   | Empty Element | `</img` -> `<img />`
- `@`    | Attribute     | `@class foo` -> `class="foo"`
- `>`    | Text          | `>text` -> `text`<br />`><text` -> `<text`<br />`>@text` -> `@text`<br />`>>text` -> `>text`
- others | Text         | `text` -> `text`
+ Symbol      | Type          | Examples
+-------------|---------------|----------------------------------------------
+ `<`         | Element       | `<p` -> `<p></p>`
+ `</`        | Empty Element | `</img` -> `<img />`
+ `<!DOCTYPE` | DOCTYPE       | `<!DOCTYPE html>` -> `<!DOCTYPE html>`
+ `@`         | Attribute     | `@class foo` -> `class="foo"`
+ `>`         | Text          | `>text` -> `text`<br />`><text` -> `<text`<br />`>@text` -> `@text`<br />`>>text` -> `>text`
+ others      | Text         | `text` -> `text`
 
 ## License
 
