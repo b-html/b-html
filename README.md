@@ -1,6 +1,6 @@
 # b-html
 
-b-html is a little language that compiles into HTML.
+An easy HTML syntax sugar.
 
 ## Installation
 

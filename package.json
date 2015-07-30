@@ -1,6 +1,6 @@
 {
   "name": "b-html",
-  "description": "HTML syntax suger",
+  "description": "An easy HTML syntax sugar",
   "version": "0.3.0",
   "author": {
     "name": "bouzuya",
