@@ -1,22 +1,32 @@
 parseEmptyElement = (s) ->
   if s.match(/^<\/\S+$/)
-    [s.substring(2), 'empty element']
+    name = s.substring(2)
+    [name, 'empty element', null, ->
+      attributes = (" #{k}=\"#{v}\"" for k, v of @attributes).join ''
+      '<' + name + attributes + ' />'
+    ]
 
 parseElement = (s) ->
   if s.match(/^<\S+$/)
-    [s.substring(1), 'element']
+    name = s.substring(1)
+    [name, 'element', null, ->
+      attributes = (" #{k}=\"#{v}\"" for k, v of @attributes).join ''
+      children = @children.map((i) -> i.write()).join('')
+      '<' + name + attributes + '>' + children + '</' + name + '>'
+    ]
 
 parseAttribute = (s) ->
   m = s.match(/^@(\S+)\s+(.+)$/)
   if m
-    [m[1], 'attribute', m[2]]
+    [m[1], 'attribute', m[2], null]
 
 parseText = (s) ->
   if s.match(/^>.+$/)
-    [s.substring(1), 'text']
+    name = s.substring(1)
+    [name, 'text', null, -> name]
 
 class Node
-  constructor: ({ @level, @name, @type, @value }) ->
+  constructor: ({ @level, @parsed, @name, @type, @value }) ->
     @parent = null
     @attributes = {}
     @children = []
@@ -33,10 +43,13 @@ class Node
       parseAttribute
       parseText
       (s) ->
-        [s, 'text']
+        [s, 'text', null, -> s]
     ].some (f) ->
       parsed = f node
-    new Node { level, name: parsed[0], type: parsed[1], value: parsed[2] }
+    new Node {
+      level, parsed,
+      name: parsed[0], type: parsed[1], value: parsed[2]
+    }
 
   setAttribute: (name, value) ->
     @attributes[name] = value
@@ -44,6 +57,9 @@ class Node
   appendChild: (n) ->
     @children.push n
     n.parent = @
+
+  write: ->
+    @parsed[3].apply @, []
 
 parse = (s) ->
   root = Node.parse '<root'
@@ -87,17 +103,6 @@ parse = (s) ->
     prev = n
   root
 
-write = (n) ->
-  if n.type is 'empty element'
-    attributes = (" #{k}=\"#{v}\"" for k, v of n.attributes).join ''
-    '<' + n.name + attributes + ' />'
-  else if n.type is 'element'
-    attributes = (" #{k}=\"#{v}\"" for k, v of n.attributes).join ''
-    children = n.children.map(write).join('')
-    '<' + n.name + attributes + '>' + children + '</' + n.name + '>'
-  else if n.type is 'text'
-    n.name
-
 module.exports = (s) ->
   root = parse s
-  root.children.map(write).join('')
+  root.children.map((i) -> i.write()).join('')
