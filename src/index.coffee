@@ -1,29 +1,38 @@
 parseEmptyElement = (s) ->
   if s.match(/^<\/\S+$/)
-    name = s.substring(2)
-    [name, 'empty element', null, ->
+    name: s.substring 2
+    type: 'empty element'
+    value: null
+    write: ->
       attributes = (" #{k}=\"#{v}\"" for k, v of @attributes).join ''
-      '<' + name + attributes + ' />'
-    ]
+      '<' + @name + attributes + ' />'
 
 parseElement = (s) ->
   if s.match(/^<\S+$/)
-    name = s.substring(1)
-    [name, 'element', null, ->
+    name: s.substring 1
+    type: 'element'
+    value: null
+    write: ->
       attributes = (" #{k}=\"#{v}\"" for k, v of @attributes).join ''
       children = @children.map((i) -> i.write()).join('')
-      '<' + name + attributes + '>' + children + '</' + name + '>'
-    ]
+      '<' + @name + attributes + '>' + children + '</' + @name + '>'
 
 parseAttribute = (s) ->
   m = s.match(/^@(\S+)\s+(.+)$/)
   if m
-    [m[1], 'attribute', m[2], null]
+    name: m[1]
+    type: 'attribute'
+    value: m[2]
+    write: ->
+      throw new Error()
 
 parseText = (s) ->
   if s.match(/^>.+$/)
-    name = s.substring(1)
-    [name, 'text', null, -> name]
+    name: s.substring(1)
+    type: 'text'
+    value: null
+    write: ->
+      @name
 
 class Node
   constructor: ({ @level, @parsed, @name, @type, @value }) ->
@@ -43,12 +52,15 @@ class Node
       parseAttribute
       parseText
       (s) ->
-        [s, 'text', null, -> s]
+        name: s
+        type: 'text'
+        value: null
+        write: -> s
     ].some (f) ->
       parsed = f node
     new Node {
       level, parsed,
-      name: parsed[0], type: parsed[1], value: parsed[2]
+      name: parsed.name, type: parsed.type, value: parsed.value
     }
 
   setAttribute: (name, value) ->
@@ -59,7 +71,7 @@ class Node
     n.parent = @
 
   write: ->
-    @parsed[3].apply @, []
+    @parsed.write.apply @, []
 
 parse = (s) ->
   root = Node.parse '<root'
