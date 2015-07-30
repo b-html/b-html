@@ -1,35 +1,4 @@
-class Node
-  constructor: ({ @level }) ->
-    @parent = null
-    @attributes = {}
-    @children = []
-
-  @parse: (s) ->
-    [
-      EmptyElement
-      Element
-      Attribute
-      Text
-      parse: (s) =>
-        { level, node } = Node.parseBasic s
-        new Text level: level, name: node
-    ].reduce (parsed, i) ->
-      return parsed if parsed?
-      i.parse s
-
-  @parseBasic: (s) ->
-    match = s.match /^(\s*)(.+)$/
-    throw new Error() unless match?
-    [_, space, node] = match
-    level = space.length
-    { level, node }
-
-  appendChild: (n) ->
-    @children.push n
-    n.parent = @
-
-  setAttribute: (name, value) ->
-    @attributes[name] = value
+{Node} = require './node'
 
 class EmptyElement extends Node
   constructor: (options) ->
@@ -132,12 +101,26 @@ class Text extends Node
   write: ->
     @name
 
+parse = (s) ->
+  [
+    EmptyElement
+    Element
+    Attribute
+    Text
+    parse: (s) ->
+      { level, node } = Node.parseBasic s
+      new Text level: level, name: node
+  ].reduce (parsed, i) ->
+    return parsed if parsed?
+    i.parse s
+  , null
+
 module.exports = (s) ->
-  root = Node.parse '<root'
+  root = parse '<root'
   root.parent = root
   prev = root
   s.split(/\n/).forEach (line) ->
     return if line.trim().length is 0
-    n = Node.parse line
+    n = parse line
     prev = n.append prev
   root.children.map((i) -> i.write()).join('')
