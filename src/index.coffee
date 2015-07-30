@@ -70,51 +70,56 @@ class Node
     @children.push n
     n.parent = @
 
+  appendTo: (prev) ->
+    if @level > prev.level
+      if @type is 'attribute'
+        prev.setAttribute @name, @value
+        return prev
+      else if @type is 'element' or @type is 'empty element'
+        prev.appendChild @
+        return @
+      else if @type is 'text'
+        prev.appendChild @
+        return @
+      else
+        throw new Error 'unknown type'
+    else if @level is prev.level
+      if @type is 'attribute'
+        throw new Error()
+      else if @type is 'element' or @type is 'empty element'
+        prev.parent.appendChild @
+        return @
+      else if @type is 'text'
+        prev.parent.appendChild @
+        return @
+      else
+        throw new Error 'unknown type'
+    else if @level < prev.level
+      if @type is 'attribute'
+        throw new Error()
+      else if @type is 'element' or @type is 'empty element'
+        p = prev
+        p = p.parent until p.level is @level
+        p.parent.appendChild @
+        return @
+      else if @type is 'text'
+        p = prev
+        p = p.parent until p.level is @level
+        p.parent.appendChild @
+        return @
+      else
+        throw new Error 'unknown type'
+    @
+
   write: ->
     @parsed.write.apply @, []
 
-parse = (s) ->
+module.exports = (s) ->
   root = Node.parse '<root'
   root.parent = root
   prev = root
   s.split(/\n/).forEach (line) ->
     return if line.trim().length is 0
     n = Node.parse line
-    if n.level > prev.level
-      if n.type is 'attribute'
-        prev.setAttribute n.name, n.value
-        n = prev # for `prev = n`
-      else if n.type is 'element' or n.type is 'empty element'
-        prev.appendChild n
-      else if n.type is 'text'
-        prev.appendChild n
-      else
-        throw new Error 'unknown type'
-    else if n.level is prev.level
-      if n.type is 'attribute'
-        throw new Error()
-      else if n.type is 'element' or n.type is 'empty element'
-        prev.parent.appendChild n
-      else if n.type is 'text'
-        prev.parent.appendChild n
-      else
-        throw new Error 'unknown type'
-    else if n.level < prev.level
-      if n.type is 'attribute'
-        throw new Error()
-      else if n.type is 'element' or n.type is 'empty element'
-        p = prev
-        p = p.parent until p.level is n.level
-        p.parent.appendChild n
-      else if n.type is 'text'
-        p = prev
-        p = p.parent until p.level is n.level
-        p.parent.appendChild n
-      else
-        throw new Error 'unknown type'
-    prev = n
-  root
-
-module.exports = (s) ->
-  root = parse s
+    prev = n.appendTo prev
   root.children.map((i) -> i.write()).join('')
