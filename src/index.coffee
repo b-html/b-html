@@ -5,7 +5,6 @@ class Node
     @children = []
 
   @parse: (s) ->
-    parsed = null
     [
       EmptyElement
       Element
@@ -14,9 +13,9 @@ class Node
       parse: (s) =>
         { level, node } = Node.parseBasic s
         new Text level: level, name: node
-    ].some (i) ->
-      parsed = i.parse s
-    parsed
+    ].reduce (parsed, i) ->
+      return parsed if parsed?
+      i.parse s
 
   @parseBasic: (s) ->
     match = s.match /^(\s*)(.+)$/
