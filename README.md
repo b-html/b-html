@@ -46,10 +46,10 @@ bHtml('<p') === '<p></p>';
 -------------|---------------|----------------------------------------------
  `<`         | Element       | `<p` -> `<p></p>`
  `</`        | Empty Element | `</img` -> `<img />`
- `<!DOCTYPE` | DOCTYPE       | `<!DOCTYPE html>` -> `<!DOCTYPE html>`
+ `<!`        | Comment       | `<!-- aiueo -->` -> `<!-- aiueo -->`<br />`<!DOCTYPE html>` -> `<!DOCTYPE html>`
  `@`         | Attribute     | `@class foo` -> `class="foo"`
  `>`         | Text          | `>text` -> `text`<br />`><text` -> `<text`<br />`>@text` -> `@text`<br />`>>text` -> `>text`
- others      | Text         | `text` -> `text`
+ others      | Text          | `text` -> `text`
 
 ## License
 
