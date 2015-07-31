@@ -1,15 +1,14 @@
 {Node} = require './node'
 
 class EmptyElement extends Node
-  constructor: (options) ->
-    super options
-    @type = 'empty element'
-    @name = options.name
+  constructor: ({ level, @name }) ->
+    super { level }
 
   @parse: (s) ->
     { level, node } = Node.parseBasic s
-    if node.match(/^<\/\S+$/)
-      new EmptyElement level: level, name: node.substring 2
+    m = node.match /^<\/(\S+)$/
+    if m?
+      new EmptyElement { level, name: m[1] }
 
   append: (prev) ->
     if @level > prev.level
