@@ -74,7 +74,7 @@ class Attribute extends Node
       throw new Error()
 
   write: ->
-      throw new Error()
+    throw new Error()
 
 class Text extends Node
   constructor: (options) ->
