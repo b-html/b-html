@@ -8,8 +8,9 @@ class Text extends Node
 
   @parse: (s) ->
     { level, node } = Node.parseBasic s
-    if node.match(/^>.+$/)
-      new Text level: level, name: node.substring(1)
+    m = node.match(/^>?(.+)$/)
+    if m?
+      new Text level: level, name: m[1]
 
   append: (prev) ->
     if @level > prev.level

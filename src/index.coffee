@@ -9,9 +9,6 @@ parse = (s) ->
     Element
     Attribute
     Text
-    parse: (s) ->
-      { level, node } = Node.parseBasic s
-      new Text level: level, name: node
   ].reduce (parsed, i) ->
     return parsed if parsed?
     i.parse s
