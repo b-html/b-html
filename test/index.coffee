@@ -105,3 +105,8 @@ describe 'index', ->
       <!DOCTYPE html>
     '''
     assert html is '<!DOCTYPE html>'
+
+    html = bHtml '''
+      <!-- abc -->
+    '''
+    assert html is '<!-- abc -->'

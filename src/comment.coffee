@@ -1,14 +1,14 @@
 {Node} = require './node'
 
-class Doctype extends Node
+class Comment extends Node
   constructor: ({ level, @content }) ->
     super { level }
 
   @parse: (s) ->
     { level, node } = Node.parseBasic s
-    m = node.match /^<!DOCTYPE.+$/
+    m = node.match /^<!.+$/
     if m?
-      new Doctype { level, content: m[0] }
+      new Comment { level, content: m[0] }
 
   append: (prev) ->
     if @level > prev.level
@@ -24,4 +24,4 @@ class Doctype extends Node
   write: ->
     @content
 
-module.exports.Doctype = Doctype
+module.exports.Comment = Comment
