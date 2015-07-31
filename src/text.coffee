@@ -1,16 +1,14 @@
 {Node} = require './node'
 
 class Text extends Node
-  constructor: (options) ->
-    super options
-    @type = 'text'
-    @name = options.name
+  constructor: ({ level, @content }) ->
+    super { level }
 
   @parse: (s) ->
     { level, node } = Node.parseBasic s
-    m = node.match(/^>?(.+)$/)
+    m = node.match /^>?(.+)$/
     if m?
-      new Text level: level, name: m[1]
+      new Text { level, content: m[1] }
 
   append: (prev) ->
     if @level > prev.level
@@ -24,6 +22,6 @@ class Text extends Node
     @
 
   write: ->
-    @name
+    @content
 
 module.exports.Text = Text
