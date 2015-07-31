@@ -10,26 +10,59 @@ $ npm install b-html
 
 ## Syntax
 
-b-html:
+index.bhtml (b-html) :
 
 ```b-html
-<div
-  @class foo
-  <h1
-    title
-  <p
-    >@content
-    </img
-      @src /images/sample.png
+<!DOCTYPE html>
+<html
+  <head
+    <title
+      b-html title
+    </meta
+      @charset utf-8
+  <body
+    <!-- HTML5 -->
+    <h1
+      @class title
+      b-html headline
+    <p
+      Hello, b-html!
+      >@bouzuya
+      </img
+        @alt sample image
+        @src /images/sample.png
 ```
 
-Compiled: (formatted)
+index.html (compiled & formatted) :
 
 ```html
-<div class="foo">
-  <h1>title</h1>
-  <p>@content<img src="/images/sample.png" /></p>
-</div>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      b-html title
+    </title>
+    <meta
+      charset="utf-8"
+      />
+  </head>
+  <body>
+    <!-- HTML5 -->
+    <h1
+      class="title"
+      >
+      b-html headline
+    </h1>
+    <p>
+      Hello, b-html!
+      @bouzuya
+      <img
+        alt="sample image"
+        src="/images/sample.png"
+        />
+    </p>
+  </body>
+</html>
 ```
 
 ## Usage
