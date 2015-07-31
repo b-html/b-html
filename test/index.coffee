@@ -100,3 +100,8 @@ describe 'index', ->
       </img
     '''
     assert html is '<img />'
+
+    html = bHtml '''
+      <!DOCTYPE html>
+    '''
+    assert html is '<!DOCTYPE html>'

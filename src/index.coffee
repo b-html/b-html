@@ -1,10 +1,12 @@
 {Attribute} = require './attribute'
+{Doctype} = require './doctype'
 {Element} = require './element'
 {EmptyElement} = require './empty-element'
 {Text} = require './text'
 
 parse = (s) ->
   [
+    Doctype
     EmptyElement
     Element
     Attribute
