@@ -44,6 +44,7 @@ bHtml('<p') === '<p></p>';
 
  Symbol      | Type          | Examples
 -------------|---------------|----------------------------------------------
+ ` ` (Space) | -             | See: ["Off-side rule"](https://en.wikipedia.org/wiki/Off-side_rule)
  `<`         | Element       | `<p` -> `<p></p>`
  `</`        | Empty Element | `</img` -> `<img />`
  `<!`        | Comment       | `<!-- aiueo -->` -> `<!-- aiueo -->`<br />`<!DOCTYPE html>` -> `<!DOCTYPE html>`
