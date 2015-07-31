@@ -1,15 +1,14 @@
 {Node} = require './node'
 
 class Element extends Node
-  constructor: (options) ->
-    super options
-    @type = 'element'
-    @name = options.name
+  constructor: ({ level, @name }) ->
+    super { level }
 
   @parse: (s) ->
     { level, node } = Node.parseBasic s
-    if node.match(/^<\S+$/)
-      new Element level: level, name: node.substring 1
+    m = node.match /^<(\S+)$/
+    if m?
+      new Element { level, name: m[1] }
 
   append: (prev) ->
     if @level > prev.level
@@ -24,7 +23,7 @@ class Element extends Node
 
   write: ->
     attributes = (" #{k}=\"#{v}\"" for k, v of @attributes).join ''
-    children = @children.map((i) -> i.write()).join('')
+    children = @children.map((i) -> i.write()).join ''
     '<' + @name + attributes + '>' + children + '</' + @name + '>'
 
 module.exports.Element = Element
