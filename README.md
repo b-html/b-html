@@ -33,7 +33,7 @@ index.bhtml (b-html) :
         @src /images/sample.png
 ```
 
-index.html (compiled & formatted) :
+index.html (compiled) :
 
 ```html
 <!DOCTYPE html>
