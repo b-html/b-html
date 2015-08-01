@@ -31,4 +31,5 @@ module.exports = (s) ->
     { level, node } = parseLevel line
     n = parseNode level, node
     prev = n.append prev
-  root.children.map((i) -> i.write()).join('')
+  html = root.children.map((i) -> i.write()).join('')
+  html.substring 0, html.length - 1

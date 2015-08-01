@@ -21,8 +21,13 @@ class Element extends Node
     @
 
   write: ->
-    attributes = (" #{k}=\"#{v}\"" for k, v of @attributes).join ''
+    indent = [0...@level].map((i) -> ' ').join ''
+    attributes = ("#{indent}#{k}=\"#{v}\"" for k, v of @attributes).join ''
+    attributes += if attributes.length > 0 then '\n' else ''
     children = @children.map((i) -> i.write()).join ''
-    '<' + @name + attributes + '>' + children + '</' + @name + '>'
+    """
+    #{indent}<#{@name}#{attributes}>
+    #{indent}#{children}</#{@name}>\n
+    """
 
 module.exports.Element = Element

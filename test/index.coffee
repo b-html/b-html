@@ -2,29 +2,41 @@ assert = require 'power-assert'
 bHtml = require '../src/'
 
 describe 'index', ->
+  describe 'Element', ->
+    it 'works', ->
+      html = bHtml '''
+        <p
+      '''
+      assert html is '''
+        <p>
+        </p>
+      '''
+
+      html = bHtml '''
+        <p
+        <p
+      '''
+      assert html is '''
+        <p>
+        </p>
+        <p>
+        </p>
+      '''
+
+      html = bHtml '''
+        <p
+          <p
+      '''
+      assert html is '''
+        <p>
+          <p>
+          </p>
+        </p>
+      '''
+
   it 'works', ->
     html = bHtml '\n'
     assert html is ''
-
-    html = bHtml '<p\n'
-    assert html is '<p></p>'
-
-    html = bHtml '''
-      <p
-    '''
-    assert html is '<p></p>'
-
-    html = bHtml '''
-      <p
-      <p
-    '''
-    assert html is '<p></p><p></p>'
-
-    html = bHtml '''
-      <p
-        <p
-    '''
-    assert html is '<p><p></p></p>'
 
     html = bHtml '''
       <p
