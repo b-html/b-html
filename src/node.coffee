@@ -5,10 +5,9 @@ class Node
     @children = []
 
   @parseBasic: (s, prevLevel) ->
-    match = s.match /^((?:  )*)(.+)$/
-    return { level: prevLevel, node: '' } unless match?
-    [_, space, node] = match
-    level = space.length
+    match = s.match /^(?:  )*/
+    level = match[0].length
+    node = s.substring level
     { level, node }
 
   appendChild: (n) ->

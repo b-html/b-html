@@ -21,6 +21,7 @@ module.exports = (s) ->
   root.parent = root
   prev = root
   s.split(/\n/).forEach (line) ->
+    return if line.length is 0
     n = parse line, prev.level
     prev = n.append prev
   root.children.map((i) -> i.write()).join('')

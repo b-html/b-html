@@ -78,6 +78,10 @@ describe 'index', ->
     '''
     assert html is '<p>line1line2</p>'
 
+    # NOTE: prevent to remove trailing space
+    html = bHtml '<p\n  line1\n  \n  line3\n'
+    assert html is '<p>line1line3</p>'
+
     html = bHtml '''
       <p
         line1
