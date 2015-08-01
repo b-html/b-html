@@ -27,6 +27,4 @@ class Comment extends Node
     #{indent}#{@content}\n#{children}
     """
 
-
-
 module.exports.Comment = Comment
