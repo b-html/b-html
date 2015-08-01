@@ -1,12 +1,12 @@
 class Node
   constructor: ({ @level }) ->
+    @type = 'unknown' # override in child class
     @parent = null
     @attributes = {}
     @children = []
 
-  appendChild: (n) ->
-    @children.push n
-    n.parent = @
+  appendChild: ->
+    throw new Error "#{@type} doesn't have a child"
 
   appendSibling: (n) ->
     @parent.appendChild n

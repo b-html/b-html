@@ -3,6 +3,7 @@
 class Attribute extends Node
   constructor: ({ level, @name, @value }) ->
     super { level }
+    @type = 'attribute'
 
   @parse: (level, node) ->
     m = node.match /^@(\S+)\s+(.+)$/
@@ -14,10 +15,6 @@ class Attribute extends Node
     throw new Error('attribute requires an element') if @level < prev.level + 2
     prev.setAttribute @name, @value
     prev
-
-  # override
-  appendChild: ->
-    throw new Error 'comment doesn\'t have a child'
 
   write: ->
     throw new Error()

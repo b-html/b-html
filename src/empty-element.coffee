@@ -3,6 +3,7 @@
 class EmptyElement extends Node
   constructor: ({ level, @name }) ->
     super { level }
+    @type = 'empty element'
 
   @parse: (level, node) ->
     m = node.match /^<\/(\S+)$/
@@ -20,10 +21,6 @@ class EmptyElement extends Node
       p = p.parent until p.level is @level
       p.appendSibling @
     @
-
-  # override
-  appendChild: ->
-    throw new Error 'empty element doesn\'t have a child'
 
   write: ->
     indent = [0...@level].map((i) -> ' ').join ''

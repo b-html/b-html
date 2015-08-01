@@ -3,6 +3,7 @@
 class Element extends Node
   constructor: ({ level, @name }) ->
     super { level }
+    @type = 'element'
 
   @parse: (level, node) ->
     m = node.match /^<(\S+)$/
@@ -20,6 +21,11 @@ class Element extends Node
       p = p.parent until p.level is @level
       p.appendSibling @
     @
+
+  # override
+  appendChild: (n) ->
+    @children.push n
+    n.parent = @
 
   write: ->
     indent = [0...@level].map((i) -> ' ').join ''

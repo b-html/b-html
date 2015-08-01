@@ -3,6 +3,7 @@
 class Text extends Node
   constructor: ({ level, @content }) ->
     super { level }
+    @type = 'text'
 
   @parse: (level, node) ->
     m = node.match /^>?(.*)$/
@@ -20,10 +21,6 @@ class Text extends Node
       p = p.parent until p.level is @level
       p.appendSibling @
     @
-
-  # override
-  appendChild: ->
-    throw new Error 'text doesn\'t have a child'
 
   write: ->
     indent = [0...@level].map((i) -> ' ').join ''

@@ -3,6 +3,7 @@
 class Comment extends Node
   constructor: ({ level, @content }) ->
     super { level }
+    @type = 'comment'
 
   @parse: (level, node) ->
     m = node.match /^<!.+$/
@@ -20,10 +21,6 @@ class Comment extends Node
       p = p.parent until p.level is @level
       p.appendSibling @
     @
-
-  # override
-  appendChild: ->
-    throw new Error 'comment doesn\'t have a child'
 
   write: ->
     ''
