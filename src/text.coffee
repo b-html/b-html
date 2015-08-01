@@ -14,11 +14,11 @@ class Text extends Node
     if @level > prev.level
       prev.appendChild @
     else if @level is prev.level
-      prev.parent.appendChild @
+      prev.appendSibling @
     else if @level < prev.level
       p = prev
       p = p.parent until p.level is @level
-      p.parent.appendChild @
+      p.appendSibling @
     @
 
   write: ->
