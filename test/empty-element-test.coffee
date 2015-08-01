@@ -44,4 +44,4 @@ describe 'EmptyElement', ->
           </img
             </img
         '''
-      assert.throws f, /empty element doesn't have a child/
+      assert.throws f, /empty element must not have a child/

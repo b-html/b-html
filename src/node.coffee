@@ -18,7 +18,7 @@ class Node
     @
 
   appendChild: ->
-    throw new Error "#{@type} doesn't have a child"
+    throw new Error "#{@type} must not have a child"
 
   appendSibling: (n) ->
     @parent.appendChild n

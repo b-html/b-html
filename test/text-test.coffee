@@ -129,7 +129,7 @@ describe 'Text', ->
           line1
             line2
         '''
-      assert.throws f, /text doesn't have a child/
+      assert.throws f, /text must not have a child/
 
       f = ->
         bHtml '''

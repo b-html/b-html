@@ -21,7 +21,7 @@ describe 'Comment', ->
           <! abc
             <! def
         '''
-      assert.throws f, /comment doesn't have a child/
+      assert.throws f, /comment must not have a child/
 
       f = ->
         bHtml '''
