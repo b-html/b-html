@@ -92,6 +92,10 @@ bHtml('<p') === '<p></p>';
  `>`             | Text          | `>text` -> `text`<br />`><text` -> `<text`<br />`>@text` -> `@text`<br />`>>text` -> `>text`
  others          | Text          | `text` -> `text`
 
+## Status Badge
+
+[![Circle CI](https://circleci.com/gh/bouzuya/b-html.svg?style=svg)](https://circleci.com/gh/bouzuya/b-html)
+
 ## License
 
 [MIT](LICENSE)
