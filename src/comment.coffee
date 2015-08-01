@@ -21,6 +21,10 @@ class Comment extends Node
       p.appendSibling @
     @
 
+  # override
+  appendChild: ->
+    throw new Error('comment doesn\'t have a child')
+
   write: ->
     ''
 

@@ -18,6 +18,13 @@ describe 'Comment', ->
     it 'works', ->
       f = ->
         bHtml '''
+          <! abc
+            <! def
+        '''
+      assert.throws f, /comment doesn't have a child/
+
+      f = ->
+        bHtml '''
           <!-- hoge -->
               <!-- hoge -->
         '''
