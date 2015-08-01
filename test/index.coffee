@@ -67,7 +67,36 @@ describe 'index', ->
             @id bar
       '''
 
-  it 'works', ->
+  describe 'EmptyElement', ->
+    it 'works', ->
+      html = bHtml '''
+        </img
+      '''
+      assert html is '<img />'
+
+      html = bHtml '''
+        </img
+          @src /images/sample.png
+      '''
+      assert html is '''
+        <img
+          src="/images/sample.png"
+          />
+      '''
+
+      html = bHtml '''
+        </img
+          @alt sample image
+          @src /images/sample.png
+      '''
+      assert html is '''
+        <img
+          alt="sample image"
+          src="/images/sample.png"
+          />
+      '''
+
+  it.skip 'works', ->
     html = bHtml '\n'
     assert html is ''
 
@@ -124,11 +153,6 @@ describe 'index', ->
           c
     '''
     assert html is '<div><h1 a="v">t</h1><p>c</p></div>'
-
-    html = bHtml '''
-      </img
-    '''
-    assert html is '<img />'
 
     html = bHtml '''
       <!DOCTYPE html>

@@ -21,7 +21,16 @@ class EmptyElement extends Node
     @
 
   write: ->
-    attributes = (" #{k}=\"#{v}\"" for k, v of @attributes).join ''
-    '<' + @name + attributes + ' />'
+    indent = [0...@level].map((i) -> ' ').join ''
+    aIndent = indent + '  ' # attrs is child
+    attributes = ("#{aIndent}#{k}=\"#{v}\"\n" for k, v of @attributes).join ''
+    attributes = if attributes.length > 0
+      '\n' + attributes + aIndent
+    else
+      ' '
+    children = @children.map((i) -> i.write()).join ''
+    """
+    #{indent}<#{@name}#{attributes}/>\n
+    """
 
 module.exports.EmptyElement = EmptyElement
