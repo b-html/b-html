@@ -84,15 +84,15 @@ bHtml('<p') === '<p></p>';
 
 ## Syntax Reference
 
- Symbol          | Node Type     | Examples
------------------|---------------|-------------------------------------------
- `  ` (2 space)  | -             | See: ["Off-side rule"](https://en.wikipedia.org/wiki/Off-side_rule)
- `<`             | Element       | `<p` -> `<p></p>`
- `</`            | Empty Element | `</img` -> `<img />`
- `<!`            | Comment       | `<!` -> ``
- `@`             | Attribute     | `@class foo` -> `class="foo"`
- `>`             | Text          | `>text` -> `text`<br />`><text` -> `<text`<br />`>@text` -> `@text`<br />`>>text` -> `>text`
- others          | Text          | `text` -> `text`
+ Symbol          | Name          | Child | Examples
+-----------------|---------------|-------|---------------------------------------
+ `  ` (2 space)  | -             | -     | See: ["Off-side rule"](https://en.wikipedia.org/wiki/Off-side_rule)
+ `<`             | Element       | Yes   | `<p` -> `<p></p>`
+ `</`            | Empty Element | No    | `</img` -> `<img />`
+ `<!`            | Comment       | No    | `<!` -> ``
+ `@`             | Attribute     | No    | `@class foo` -> `class="foo"`
+ `>`             | Text          | No    | `>text` -> `text`<br />`><text` -> `<text`<br />`>@text` -> `@text`<br />`>>text` -> `>text`
+ others          | Text          | No    | `text` -> `text`
 
 ## Related Projects
 
