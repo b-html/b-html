@@ -22,7 +22,7 @@ $ npm install b-html
 index.bhtml (b-html) :
 
 ```b-html
-<!DOCTYPE html>
+><!DOCTYPE html>
 <html
   <head
     <title
@@ -30,7 +30,7 @@ index.bhtml (b-html) :
     </meta
       @charset utf-8
   <body
-    <!-- HTML5 -->
+    ><!-- HTML5 -->
     <h1
       @class title
       b-html headline
@@ -89,7 +89,7 @@ bHtml('<p') === '<p></p>';
  `  ` (2 space)  | -             | See: ["Off-side rule"](https://en.wikipedia.org/wiki/Off-side_rule)
  `<`             | Element       | `<p` -> `<p></p>`
  `</`            | Empty Element | `</img` -> `<img />`
- `<!`            | Comment       | `<!-- aiueo -->` -> `<!-- aiueo -->`<br />`<!DOCTYPE html>` -> `<!DOCTYPE html>`
+ `<!`            | Comment       | `<!` -> ``
  `@`             | Attribute     | `@class foo` -> `class="foo"`
  `>`             | Text          | `>text` -> `text`<br />`><text` -> `<text`<br />`>@text` -> `@text`<br />`>>text` -> `>text`
  others          | Text          | `text` -> `text`

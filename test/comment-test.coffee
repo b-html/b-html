@@ -4,47 +4,15 @@ bHtml = require './'
 describe 'Comment', ->
   it 'works', ->
     html = bHtml '''
-      <!DOCTYPE html>
+      <! foo
     '''
-    assert html is '''
-      <!DOCTYPE html>
-    '''
+    assert html is ''
 
     html = bHtml '''
-      <!-- abc -->
+      <! foo
+      <! bar
     '''
-    assert html is '''
-      <!-- abc -->
-    '''
-
-    html = bHtml '''
-      <!-- abc -->
-      <!-- def -->
-    '''
-    assert html is '''
-      <!-- abc -->
-      <!-- def -->
-    '''
-
-    html = bHtml '''
-      <!-- abc -->
-        <!-- def -->
-    '''
-    assert html is '''
-      <!-- abc -->
-        <!-- def -->
-    '''
-
-    html = bHtml '''
-      <!-- abc -->
-        <!-- def -->
-        <!-- ghi -->
-    '''
-    assert html is '''
-      <!-- abc -->
-        <!-- def -->
-        <!-- ghi -->
-    '''
+    assert html is ''
 
   context '(errors)', ->
     it 'works', ->

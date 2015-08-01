@@ -4,7 +4,7 @@ bHtml = require './'
 describe 'index', ->
   it 'works', ->
     html = bHtml '''
-      <!DOCTYPE html>
+      ><!DOCTYPE html>
       <html
         <head
           <title
@@ -12,7 +12,7 @@ describe 'index', ->
           </meta
             @charset utf-8
         <body
-          <!-- HTML5 -->
+          ><!-- HTML5 -->
           <h1
             @class title
             b-html headline

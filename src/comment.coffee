@@ -22,10 +22,6 @@ class Comment extends Node
     @
 
   write: ->
-    indent = [0...@level].map((i) -> ' ').join ''
-    children = @children.map((i) -> i.write()).join ''
-    """
-    #{indent}#{@content}\n#{children}
-    """
+    ''
 
 module.exports.Comment = Comment
