@@ -65,7 +65,7 @@ index.html (compiled) :
 </html>
 ```
 
-## Usage
+## API
 
 ```javascript
 import bHtml from 'b-html';
