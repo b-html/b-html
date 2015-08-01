@@ -94,6 +94,8 @@ bHtml('<p') === '<p></p>';
  `>`             | Text          | MAY      | MUST NOT | `>text` -> `text`<br />`><text` -> `<text`<br />`>@text` -> `@text`<br />`>>text` -> `>text`<br />`><!-- comment -->` -> `<!-- comment -->`<br />`><!DOCTYPE html>` -> `<!DOCTYPE html>`<br />`><?xml version="1.0"?>` -> `<?xml version="1.0"?>`
  others          | Text          | MAY      | MUST NOT | `text` -> `text`
 
+ See: [Demo](http://b-html.github.io/b-html-demo/) ( [b-html/b-html-demo](https://github.com/b-html/b-html-demo/) )
+
 ## Related Projects
 
 - [b-html/gulp-b-html](https://github.com/b-html/gulp-b-html/) ... A gulp plugin for b-html.
