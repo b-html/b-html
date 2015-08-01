@@ -4,9 +4,9 @@ class Node
     @attributes = {}
     @children = []
 
-  @parseBasic: (s) ->
+  @parseBasic: (s, prevLevel) ->
     match = s.match /^((?:  )*)(.+)$/
-    throw new Error() unless match?
+    return { level: prevLevel, node: '' } unless match?
     [_, space, node] = match
     level = space.length
     { level, node }

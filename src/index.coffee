@@ -4,7 +4,7 @@
 {EmptyElement} = require './empty-element'
 {Text} = require './text'
 
-parse = (s) ->
+parse = (s, prevLevel) ->
   [
     Comment
     EmptyElement
@@ -13,15 +13,14 @@ parse = (s) ->
     Text
   ].reduce (parsed, i) ->
     return parsed if parsed?
-    i.parse s
+    i.parse s, prevLevel
   , null
 
 module.exports = (s) ->
-  root = parse '<root'
+  root = parse '<root', 0
   root.parent = root
   prev = root
   s.split(/\n/).forEach (line) ->
-    return if line.trim().length is 0
-    n = parse line
+    n = parse line, prev.level
     prev = n.append prev
   root.children.map((i) -> i.write()).join('')
