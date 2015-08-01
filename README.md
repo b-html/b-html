@@ -96,7 +96,8 @@ bHtml('<p') === '<p></p>';
 
 ## Related Projects
 
-- [b-html/gulp-b-html](https://github.com/b-html/gulp-b-html) ... A gulp plugin for b-html.
+- [b-html/gulp-b-html](https://github.com/b-html/gulp-b-html/) ... A gulp plugin for b-html.
+- [b-html/b-html-demo](https://github.com/b-html/b-html-demo/) ... A demo for b-html.
 
 ## Status Badge
 
