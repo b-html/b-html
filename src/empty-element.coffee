@@ -4,8 +4,7 @@ class EmptyElement extends Node
   constructor: ({ level, @name }) ->
     super { level }
 
-  @parse: (s, prevLevel) ->
-    { level, node } = Node.parseBasic s, prevLevel
+  @parse: (level, node) ->
     m = node.match /^<\/(\S+)$/
     if m?
       new EmptyElement { level, name: m[1] }

@@ -4,8 +4,7 @@ class Comment extends Node
   constructor: ({ level, @content }) ->
     super { level }
 
-  @parse: (s, prevLevel) ->
-    { level, node } = Node.parseBasic s, prevLevel
+  @parse: (level, node) ->
     m = node.match /^<!.+$/
     if m?
       new Comment { level, content: m[0] }

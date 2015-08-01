@@ -4,8 +4,7 @@ class Element extends Node
   constructor: ({ level, @name }) ->
     super { level }
 
-  @parse: (s, prevLevel) ->
-    { level, node } = Node.parseBasic s, prevLevel
+  @parse: (level, node) ->
     m = node.match /^<(\S+)$/
     if m?
       new Element { level, name: m[1] }

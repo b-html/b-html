@@ -4,8 +4,7 @@ class Attribute extends Node
   constructor: ({ level, @name, @value }) ->
     super { level }
 
-  @parse: (s, prevLevel) ->
-    { level, node } = Node.parseBasic s, prevLevel
+  @parse: (level, node) ->
     m = node.match /^@(\S+)\s+(.+)$/
     if m?
       new Attribute { level, name: m[1], value: m[2] }
