@@ -75,15 +75,15 @@ bHtml('<p') === '<p></p>';
 
 ## Syntax Reference
 
- Symbol      | Type          | Examples
--------------|---------------|----------------------------------------------
- ` ` (Space) | -             | See: ["Off-side rule"](https://en.wikipedia.org/wiki/Off-side_rule)
- `<`         | Element       | `<p` -> `<p></p>`
- `</`        | Empty Element | `</img` -> `<img />`
- `<!`        | Comment       | `<!-- aiueo -->` -> `<!-- aiueo -->`<br />`<!DOCTYPE html>` -> `<!DOCTYPE html>`
- `@`         | Attribute     | `@class foo` -> `class="foo"`
- `>`         | Text          | `>text` -> `text`<br />`><text` -> `<text`<br />`>@text` -> `@text`<br />`>>text` -> `>text`
- others      | Text          | `text` -> `text`
+ Symbol          | Node Type     | Examples
+-----------------|---------------|-------------------------------------------
+ `  ` (2 space)  | -             | See: ["Off-side rule"](https://en.wikipedia.org/wiki/Off-side_rule)
+ `<`             | Element       | `<p` -> `<p></p>`
+ `</`            | Empty Element | `</img` -> `<img />`
+ `<!`            | Comment       | `<!-- aiueo -->` -> `<!-- aiueo -->`<br />`<!DOCTYPE html>` -> `<!DOCTYPE html>`
+ `@`             | Attribute     | `@class foo` -> `class="foo"`
+ `>`             | Text          | `>text` -> `text`<br />`><text` -> `<text`<br />`>@text` -> `@text`<br />`>>text` -> `>text`
+ others          | Text          | `text` -> `text`
 
 ## License
 

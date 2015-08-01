@@ -5,7 +5,7 @@ class Node
     @children = []
 
   @parseBasic: (s) ->
-    match = s.match /^(\s*)(.+)$/
+    match = s.match /^((?:  )*)(.+)$/
     throw new Error() unless match?
     [_, space, node] = match
     level = space.length
