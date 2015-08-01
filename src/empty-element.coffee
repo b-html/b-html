@@ -28,7 +28,6 @@ class EmptyElement extends Node
       '\n' + attributes + aIndent
     else
       ' '
-    children = @children.map((i) -> i.write()).join ''
     """
     #{indent}<#{@name}#{attributes}/>\n
     """
