@@ -1,5 +1,5 @@
 assert = require 'power-assert'
-bHtml = require '../src/'
+bHtml = require './'
 
 describe 'Element', ->
   it 'works', ->

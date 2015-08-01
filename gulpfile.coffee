@@ -12,8 +12,8 @@ dirs =
   dist: './lib/'                       # javascript files
   src: './src/'                        # coffee-script files
   test: './test/'                      # coffee-script files for testing
-  tmpSrc: './.tmp/src/'                # compiled javascript files
-  tmpTest: './.tmp/test/'              # compiled javascript files for testing
+  tmpSrc: './.tmp/'                    # compiled javascript files
+  tmpTest: './.tmp/'                   # compiled javascript files for testing
 
 ignoreError = (stream) ->
   stream.on 'error', (e) ->
@@ -50,7 +50,7 @@ gulp.task 'build-test', ->
   .pipe coffee()
   .pipe espower()
   .pipe sourcemaps.write()
-  .pipe gulp.dest dirs.tmpTest
+  .pipe gulp.dest dirs.dist
 
 gulp.task 'build-test(dev)', ->
   gulp.src dirs.test + '**/*.coffee'
@@ -77,11 +77,11 @@ gulp.task 'default', (done) ->
   null
 
 gulp.task 'test', ['build', 'build-test'], ->
-  gulp.src dirs.tmpTest + '**/*.js'
+  gulp.src dirs.dist + '**/*-test.js'
   .pipe mocha()
 
-gulp.task 'test(dev)', ['build-test(dev)'], ->
-  gulp.src dirs.tmpTest + '**/*.js'
+gulp.task 'test(dev)', ->
+  gulp.src dirs.tmpTest + '**/*-test.js'
   .pipe ignoreError mocha()
 
 gulp.task 'watch', ['build(dev)'], ->
@@ -91,6 +91,7 @@ gulp.task 'watch', ['build(dev)'], ->
   ], ->
     run.apply run, [
       'build:coffee(dev)'
+      'build-test(dev)'
       'test(dev)'
       ->
     ]
