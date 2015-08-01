@@ -121,3 +121,12 @@ describe 'Text', ->
       # NOTE: prevent to remove trailing space
       html = bHtml '<p\n  line1\n  \n  line3'
       assert html is '<p>\n  line1\n  \n  line3\n</p>'
+
+  context '(errors)', ->
+    it 'works', ->
+      f = ->
+        bHtml '''
+          line1
+              line2
+        '''
+      assert.throws f, /too deep indentation/

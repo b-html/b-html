@@ -10,6 +10,7 @@ class EmptyElement extends Node
       new EmptyElement { level, name: m[1] }
 
   append: (prev) ->
+    throw new Error('too deep indentation') if @level > prev.level + 2
     if @level > prev.level
       prev.appendChild @
     else if @level is prev.level
@@ -19,6 +20,10 @@ class EmptyElement extends Node
       p = p.parent until p.level is @level
       p.appendSibling @
     @
+
+  # override
+  appendChild: ->
+    throw new Error('empty element doesn\'t have a child')
 
   write: ->
     indent = [0...@level].map((i) -> ' ').join ''

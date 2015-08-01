@@ -46,3 +46,12 @@ describe 'Element', ->
         </p>
       </p>
     '''
+
+  context '(errors)', ->
+    it 'works', ->
+      f = ->
+        bHtml '''
+          <p
+              <p
+        '''
+      assert.throws f, /too deep indentation/

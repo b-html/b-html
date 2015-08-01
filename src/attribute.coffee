@@ -10,7 +10,8 @@ class Attribute extends Node
       new Attribute { level, name: m[1], value: m[2] }
 
   append: (prev) ->
-    throw new Error() unless @level > prev.level
+    throw new Error('too deep indentation') if @level > prev.level + 2
+    throw new Error('attribute requires an element') if @level < prev.level + 2
     prev.setAttribute @name, @value
     prev
 

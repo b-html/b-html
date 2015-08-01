@@ -45,3 +45,12 @@ describe 'Comment', ->
         <!-- def -->
         <!-- ghi -->
     '''
+
+  context '(errors)', ->
+    it 'works', ->
+      f = ->
+        bHtml '''
+          <!-- hoge -->
+              <!-- hoge -->
+        '''
+      assert.throws f, /too deep indentation/

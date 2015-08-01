@@ -27,9 +27,26 @@ describe 'Attribute', ->
       </p>
     '''
 
-    # TODO: should be thrown Error ?
-    html = bHtml '''
-      <p
-        @class foo
-          @id bar
-    '''
+  context '(errors)', ->
+    it 'works', ->
+      f = ->
+        bHtml '''
+          <p
+              @class foo
+        '''
+      assert.throws f, /too deep indentation/
+
+      f = ->
+        bHtml '''
+          <p
+            @class foo
+              @id bar
+        '''
+      assert.throws f, /too deep indentation/
+
+      f = ->
+        bHtml '''
+          <p
+          @class foo
+        '''
+      assert.throws f, /attribute requires an element/

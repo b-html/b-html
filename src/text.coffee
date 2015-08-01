@@ -10,6 +10,7 @@ class Text extends Node
       new Text { level, content: m[1] }
 
   append: (prev) ->
+    throw new Error('too deep indentation') if @level > prev.level + 2
     if @level > prev.level
       prev.appendChild @
     else if @level is prev.level

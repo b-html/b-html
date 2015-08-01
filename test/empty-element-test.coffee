@@ -29,3 +29,19 @@ describe 'EmptyElement', ->
         src="/images/sample.png"
         />
     '''
+
+  context '(errors)', ->
+    it 'works', ->
+      f = ->
+        bHtml '''
+          </img
+              </img
+        '''
+      assert.throws f, /too deep indentation/
+
+      f = ->
+        bHtml '''
+          </img
+            </img
+        '''
+      assert.throws f, /empty element doesn't have a child/
