@@ -10,18 +10,6 @@ class EmptyElement extends Node
     if m?
       new EmptyElement { level, name: m[1] }
 
-  append: (prev) ->
-    throw new Error('too deep indentation') if @level > prev.level + 2
-    if @level > prev.level
-      prev.appendChild @
-    else if @level is prev.level
-      prev.appendSibling @
-    else if @level < prev.level
-      p = prev
-      p = p.parent until p.level is @level
-      p.appendSibling @
-    @
-
   write: ->
     indent = [0...@level].map((i) -> ' ').join ''
     aIndent = indent + '  ' # attrs is child
