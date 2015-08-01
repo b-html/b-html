@@ -2,6 +2,13 @@
 
 An easy HTML syntax sugar.
 
+Concepts:
+
+- It's just HTML (like a [CoffeeScript](http://coffeescript.org))
+- Simple syntax
+- Off-side rule
+- Line-oriented
+
 ## Installation
 
 ```
@@ -33,7 +40,7 @@ index.bhtml (b-html) :
         @src /images/sample.png
 ```
 
-index.html (compiled) :
+index.html (compiled b-html) :
 
 ```html
 <!DOCTYPE html>
