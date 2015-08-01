@@ -22,8 +22,12 @@ class Element extends Node
 
   write: ->
     indent = [0...@level].map((i) -> ' ').join ''
-    attributes = ("#{indent}#{k}=\"#{v}\"" for k, v of @attributes).join ''
-    attributes += if attributes.length > 0 then '\n' else ''
+    aIndent = indent + '  ' # attrs is child
+    attributes = ("#{aIndent}#{k}=\"#{v}\"\n" for k, v of @attributes).join ''
+    attributes = if attributes.length > 0
+      '\n' + attributes + aIndent
+    else
+      ''
     children = @children.map((i) -> i.write()).join ''
     """
     #{indent}<#{@name}#{attributes}>

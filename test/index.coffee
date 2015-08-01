@@ -34,29 +34,42 @@ describe 'index', ->
         </p>
       '''
 
+  describe 'Attribute', ->
+    it 'works', ->
+      html = bHtml '''
+        <p
+          @class foo
+      '''
+      assert html is '''
+        <p
+          class="foo"
+          >
+        </p>
+      '''
+
+      html = bHtml '''
+        <p
+          @class foo
+          @id bar
+      '''
+      assert html is '''
+        <p
+          class="foo"
+          id="bar"
+          >
+        </p>
+      '''
+
+      # TODO: should be thrown Error ?
+      html = bHtml '''
+        <p
+          @class foo
+            @id bar
+      '''
+
   it 'works', ->
     html = bHtml '\n'
     assert html is ''
-
-    html = bHtml '''
-      <p
-        @class foo
-    '''
-    assert html is '<p class="foo"></p>'
-
-    html = bHtml '''
-      <p
-        @class foo
-        @id bar
-    '''
-    assert html is '<p class="foo" id="bar"></p>'
-
-    # TODO:
-    html = bHtml '''
-      <p
-        @class foo
-          @id bar
-    '''
 
     html = bHtml '''
       <p
