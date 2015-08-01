@@ -92,6 +92,10 @@ bHtml('<p') === '<p></p>';
  `>`             | Text          | `>text` -> `text`<br />`><text` -> `<text`<br />`>@text` -> `@text`<br />`>>text` -> `>text`
  others          | Text          | `text` -> `text`
 
+## Related Projects
+
+- [b-html/gulp-b-html](https://github.com/b-html/gulp-b-html) ... A gulp plugin for b-html.
+
 ## Status Badge
 
 [![Circle CI](https://circleci.com/gh/b-html/b-html.svg?style=svg)](https://circleci.com/gh/b-html/b-html)
