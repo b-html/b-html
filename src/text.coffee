@@ -21,6 +21,10 @@ class Text extends Node
       p.appendSibling @
     @
 
+  # override
+  appendChild: ->
+    throw new Error 'text doesn\'t have a child'
+
   write: ->
     indent = [0...@level].map((i) -> ' ').join ''
     children = @children.map((i) -> i.write()).join ''

@@ -23,7 +23,7 @@ class EmptyElement extends Node
 
   # override
   appendChild: ->
-    throw new Error('empty element doesn\'t have a child')
+    throw new Error 'empty element doesn\'t have a child'
 
   write: ->
     indent = [0...@level].map((i) -> ' ').join ''

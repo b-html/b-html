@@ -15,6 +15,10 @@ class Attribute extends Node
     prev.setAttribute @name, @value
     prev
 
+  # override
+  appendChild: ->
+    throw new Error 'comment doesn\'t have a child'
+
   write: ->
     throw new Error()
 

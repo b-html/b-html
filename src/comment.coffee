@@ -23,7 +23,7 @@ class Comment extends Node
 
   # override
   appendChild: ->
-    throw new Error('comment doesn\'t have a child')
+    throw new Error 'comment doesn\'t have a child'
 
   write: ->
     ''

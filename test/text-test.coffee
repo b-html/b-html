@@ -127,6 +127,13 @@ describe 'Text', ->
       f = ->
         bHtml '''
           line1
+            line2
+        '''
+      assert.throws f, /text doesn't have a child/
+
+      f = ->
+        bHtml '''
+          line1
               line2
         '''
       assert.throws f, /too deep indentation/

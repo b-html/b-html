@@ -29,6 +29,15 @@ describe 'Attribute', ->
 
   context '(errors)', ->
     it 'works', ->
+      # NOTE: too deep indentation
+      # f = ->
+      #   bHtml '''
+      #     <p
+      #       @class foo
+      #         @class bar
+      #   '''
+      # assert.throws f, /attribute doesn't have a child/
+
       f = ->
         bHtml '''
           <p
