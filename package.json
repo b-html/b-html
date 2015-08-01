@@ -8,7 +8,7 @@
     "url": "http://bouzuya.net"
   },
   "bugs": {
-    "url": "https://github.com/bouzuya/b-html/issues"
+    "url": "https://github.com/b-html/b-html/issues"
   },
   "devDependencies": {
     "coffee-script": "^1.9.3",
@@ -30,16 +30,16 @@
     "LICENSE",
     "README.md"
   ],
-  "homepage": "https://github.com/bouzuya/b-html#readme",
+  "homepage": "https://github.com/b-html/b-html#readme",
   "keywords": [
-    "b-html",
-    "HTML"
+    "HTML",
+    "b-html"
   ],
   "license": "MIT",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bouzuya/b-html.git"
+    "url": "git+https://github.com/b-html/b-html.git"
   },
   "scripts": {
     "build": "gulp build",

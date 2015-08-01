@@ -94,7 +94,7 @@ bHtml('<p') === '<p></p>';
 
 ## Status Badge
 
-[![Circle CI](https://circleci.com/gh/bouzuya/b-html.svg?style=svg)](https://circleci.com/gh/bouzuya/b-html)
+[![Circle CI](https://circleci.com/gh/b-html/b-html.svg?style=svg)](https://circleci.com/gh/b-html/b-html)
 
 ## License
 
