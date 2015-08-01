@@ -34,6 +34,20 @@ describe 'index', ->
         </p>
       '''
 
+      html = bHtml '''
+        <p
+          <p
+          <p
+      '''
+      assert html is '''
+        <p>
+          <p>
+          </p>
+          <p>
+          </p>
+        </p>
+      '''
+
   describe 'Attribute', ->
     it 'works', ->
       html = bHtml '''
