@@ -89,9 +89,9 @@ bHtml('<p') === '<p></p>';
  `  ` (2 space)  | -             | -        | -        | See: ["Off-side rule"](https://en.wikipedia.org/wiki/Off-side_rule)
  `<`             | Element       | MAY      | MAY      | `<p` -> `<p></p>`
  `</`            | Empty Element | MAY      | MUST NOT | `</img` -> `<img />`
- `<!`            | Comment       | MAY      | MUST NOT | `<!` -> ``
+ `<!`            | Comment       | MAY      | MUST NOT | `<!` -> (remove)
  `@`             | Attribute     | MUST     | MUST NOT | `@class foo` -> `class="foo"`
- `>`             | Text          | MAY      | MUST NOT | `>text` -> `text`<br />`><text` -> `<text`<br />`>@text` -> `@text`<br />`>>text` -> `>text`
+ `>`             | Text          | MAY      | MUST NOT | `>text` -> `text`<br />`><text` -> `<text`<br />`>@text` -> `@text`<br />`>>text` -> `>text`<br />`><!-- comment -->` -> `<!-- comment -->`<br />`><!DOCTYPE html>` -> `<!DOCTYPE html>`<br />`><?xml version="1.0"?>` -> `<?xml version="1.0"?>`
  others          | Text          | MAY      | MUST NOT | `text` -> `text`
 
 ## Related Projects
