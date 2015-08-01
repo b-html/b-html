@@ -110,7 +110,52 @@ describe 'index', ->
           />
       '''
 
-  it.skip 'works', ->
+  describe 'Comment', ->
+    it 'works', ->
+      html = bHtml '''
+        <!DOCTYPE html>
+      '''
+      assert html is '''
+        <!DOCTYPE html>
+      '''
+
+      html = bHtml '''
+        <!-- abc -->
+      '''
+      assert html is '''
+        <!-- abc -->
+      '''
+
+      html = bHtml '''
+        <!-- abc -->
+        <!-- def -->
+      '''
+      assert html is '''
+        <!-- abc -->
+        <!-- def -->
+      '''
+
+      html = bHtml '''
+        <!-- abc -->
+          <!-- def -->
+      '''
+      assert html is '''
+        <!-- abc -->
+          <!-- def -->
+      '''
+
+      html = bHtml '''
+        <!-- abc -->
+          <!-- def -->
+          <!-- ghi -->
+      '''
+      assert html is '''
+        <!-- abc -->
+          <!-- def -->
+          <!-- ghi -->
+      '''
+
+  it 'works', ->
     html = bHtml '\n'
     assert html is ''
 
@@ -167,13 +212,3 @@ describe 'index', ->
           c
     '''
     assert html is '<div><h1 a="v">t</h1><p>c</p></div>'
-
-    html = bHtml '''
-      <!DOCTYPE html>
-    '''
-    assert html is '<!DOCTYPE html>'
-
-    html = bHtml '''
-      <!-- abc -->
-    '''
-    assert html is '<!-- abc -->'
