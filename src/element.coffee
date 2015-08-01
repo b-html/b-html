@@ -29,13 +29,9 @@ class Element extends Node
     else
       ''
     children = @children.map((i) -> i.write()).join ''
-    children += if children.length > 0
-      indent
-    else
-      ''
     """
     #{indent}<#{@name}#{attributes}>
-    #{indent}#{children}</#{@name}>\n
+    #{children}#{indent}</#{@name}>\n
     """
 
 module.exports.Element = Element
