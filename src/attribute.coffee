@@ -12,7 +12,7 @@ class Attribute extends Node
 
   append: (prev) ->
     throw new Error('too deep indentation') if @level > prev.level + 2
-    throw new Error('attribute requires a parent') if @level < prev.level + 2
+    throw new Error('attribute must have a parent') if @level < prev.level + 2
     prev.setAttribute @name, @value
     prev
 

@@ -58,4 +58,4 @@ describe 'Attribute', ->
           <p
           @class foo
         '''
-      assert.throws f, /attribute requires a parent/
+      assert.throws f, /attribute must have a parent/
