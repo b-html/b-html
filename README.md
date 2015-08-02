@@ -1,5 +1,7 @@
 # b-html
 
+[![Join the chat at https://gitter.im/b-html/b-html](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/b-html/b-html?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 An easy HTML syntax sugar.
 
 Concepts:
