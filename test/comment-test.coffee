@@ -4,6 +4,11 @@ bHtml = require './'
 describe 'Comment', ->
   it 'works', ->
     html = bHtml '''
+      <!
+    '''
+    assert html is ''
+
+    html = bHtml '''
       <! foo
     '''
     assert html is ''
