@@ -1,4 +1,4 @@
-# b-html
+# ![b-html](https://cloud.githubusercontent.com/assets/1221346/9025477/cc197724-3940-11e5-95ba-0ac9bd8615b3.png)
 
 An easy HTML syntax sugar.
 
