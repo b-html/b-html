@@ -12,10 +12,9 @@ class EmptyElement extends Node
 
   write: ->
     indent = [0...@level].map((i) -> ' ').join ''
-    aIndent = indent + '  ' # attrs is child
-    attributes = ("#{aIndent}#{k}=\"#{v}\"\n" for k, v of @attributes).join ''
+    attributes = @attributes.map((i) -> i.write()).join ''
     attributes = if attributes.length > 0
-      '\n' + attributes + aIndent
+      '\n' + attributes + indent + '  ' # attrs is child (+2 level)
     else
       ' '
     """

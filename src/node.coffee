@@ -2,7 +2,7 @@ class Node
   constructor: ({ @level }) ->
     @type = 'unknown' # override in child class
     @parent = null
-    @attributes = {}
+    @attributes = []
     @children = []
 
   append: (prev) ->
@@ -23,7 +23,7 @@ class Node
   appendSibling: (n) ->
     @parent.appendChild n
 
-  setAttribute: (name, value) ->
-    @attributes[name] = value
+  setAttribute: (attr) ->
+    @attributes.push attr
 
 module.exports.Node = Node
