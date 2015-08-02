@@ -100,6 +100,7 @@ bHtml('<p') === '<p></p>';
 
 - [b-html/gulp-b-html](https://github.com/b-html/gulp-b-html/) ... A gulp plugin for b-html.
 - [b-html/b-html-demo](https://github.com/b-html/b-html-demo/) ... A demo for b-html.
+- [b-html/atom-language-b-html](https://github.com/b-html/atom-language-b-html) ... b-html support in Atom.
 
 ## Status Badge
 
