@@ -86,7 +86,9 @@ gulp.task 'test(dev)', ->
 
 gulp.task 'watch', ['build(dev)'], ->
   watch [
+    dirs.src + '*.coffee' # for gulp-watch bug
     dirs.src + '**/*.coffee'
+    dirs.test + '*.coffee' # for gulp-watch bug
     dirs.test + '**/*.coffee'
   ], ->
     run.apply run, [
