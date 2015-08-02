@@ -24,16 +24,18 @@ index.bhtml (b-html) :
 ```b-html
 ><!DOCTYPE html>
 <html
+  @lang en
   <head
-    <title
-      b-html title
     </meta
       @charset utf-8
+    <title
+      TITLE
   <body
-    ><!-- HTML5 -->
+    <! b-html comment
+    ><!-- HTML comment -->
     <h1
       @class title
-      b-html headline
+      HEADLINE
     <p
       Hello, b-html!
       >@bouzuya
@@ -46,21 +48,23 @@ index.html (compiled b-html) :
 
 ```html
 <!DOCTYPE html>
-<html>
+<html
+  lang="en"
+  >
   <head>
-    <title>
-      b-html title
-    </title>
     <meta
       charset="utf-8"
       />
+    <title>
+      TITLE
+    </title>
   </head>
   <body>
-    <!-- HTML5 -->
+    <!-- HTML comment -->
     <h1
       class="title"
       >
-      b-html headline
+      HEADLINE
     </h1>
     <p>
       Hello, b-html!
