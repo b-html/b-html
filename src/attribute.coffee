@@ -6,7 +6,7 @@ class Attribute extends Node
     @type = 'attribute'
 
   @parse: (level, node) ->
-    m = node.match /^@(\S+)\s+(.+)$/
+    m = node.match /^@(\S+)(?:\s+(.+))?$/
     if m?
       new Attribute { level, name: m[1], value: m[2] }
 
