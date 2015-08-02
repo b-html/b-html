@@ -1,14 +1,14 @@
 {Node} = require './node'
 
 class Comment extends Node
-  constructor: ({ level, @content }) ->
+  constructor: ({ level }) ->
     super { level }
     @type = 'comment'
 
   @parse: (level, node) ->
     m = node.match /^<!.*$/
     if m?
-      new Comment { level, content: m[0] }
+      new Comment { level }
 
   write: ->
     ''
