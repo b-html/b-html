@@ -2,8 +2,7 @@
 
 class Element extends Node
   constructor: ({ level, @name }) ->
-    super { level }
-    @type = 'element'
+    super { level, type: 'element' }
 
   @parse: (level, node) ->
     m = node.match /^<(\S+)$/
