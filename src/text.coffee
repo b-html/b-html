@@ -2,8 +2,7 @@
 
 class Text extends Node
   constructor: ({ level, @content }) ->
-    super { level }
-    @type = 'text'
+    super { level, type: 'text' }
 
   @parse: (level, node) ->
     m = node.match /^>?(.*)$/

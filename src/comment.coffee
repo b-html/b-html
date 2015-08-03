@@ -2,8 +2,7 @@
 
 class Comment extends Node
   constructor: ({ level }) ->
-    super { level }
-    @type = 'comment'
+    super { level, type: 'comment' }
 
   @parse: (level, node) ->
     m = node.match /^<!.*$/

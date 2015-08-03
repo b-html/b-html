@@ -1,6 +1,5 @@
 class Node
-  constructor: ({ @level }) ->
-    @type = 'unknown' # override in child class
+  constructor: ({ @level, @type }) ->
     @parent = null
     @attributes = []
     @children = []

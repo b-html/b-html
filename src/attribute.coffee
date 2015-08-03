@@ -2,8 +2,7 @@
 
 class Attribute extends Node
   constructor: ({ level, @name, @value }) ->
-    super { level }
-    @type = 'attribute'
+    super { level, type: 'attribute' }
 
   @parse: (level, node) ->
     m = node.match /^@(\S+)(?:\s+(.+))?$/

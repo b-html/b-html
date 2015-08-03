@@ -2,8 +2,7 @@
 
 class EmptyElement extends Node
   constructor: ({ level, @name }) ->
-    super { level }
-    @type = 'empty element'
+    super { level, type: 'empty element' }
 
   @parse: (level, node) ->
     m = node.match /^<\/(\S+)$/
