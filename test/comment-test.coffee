@@ -3,21 +3,21 @@ bHtml = require './'
 
 describe 'Comment', ->
   it 'works', ->
-    html = bHtml '''
+    source = '''
       <!
     '''
-    assert html is ''
+    assert bHtml(source, demo: true) is ''
 
-    html = bHtml '''
+    source = '''
       <! foo
     '''
-    assert html is ''
+    assert bHtml(source, demo: true) is ''
 
-    html = bHtml '''
+    source = '''
       <! foo
       <! bar
     '''
-    assert html is ''
+    assert bHtml(source, demo: true) is ''
 
   context '(errors)', ->
     it 'works', ->

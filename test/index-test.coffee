@@ -3,7 +3,7 @@ bHtml = require './'
 
 describe 'index', ->
   it 'works', ->
-    html = bHtml '''
+    source = '''
       ><!DOCTYPE html>
       <html
         @lang en
@@ -25,7 +25,7 @@ describe 'index', ->
               @alt sample image
               @src /images/sample.png
     '''
-    assert html is '''
+    assert bHtml(source, demo: true) is '''
       <!DOCTYPE html>
       <html
         lang="en"

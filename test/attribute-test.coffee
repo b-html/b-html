@@ -4,23 +4,23 @@ bHtml = require './'
 describe 'Attribute', ->
   context 'with value', ->
     it 'works', ->
-      html = bHtml '''
+      source = '''
         <p
           @class foo
       '''
-      assert html is '''
+      assert bHtml(source, demo: true) is '''
         <p
           class="foo"
           >
         </p>
       '''
 
-      html = bHtml '''
+      source = '''
         <p
           @class foo
           @id bar
       '''
-      assert html is '''
+      assert bHtml(source, demo: true) is '''
         <p
           class="foo"
           id="bar"
@@ -30,23 +30,23 @@ describe 'Attribute', ->
 
   context 'without value', ->
     it 'works', ->
-      html = bHtml '''
+      source = '''
         </input
           @type checkbox
           @checked
       '''
-      assert html is '''
+      assert bHtml(source, demo: true) is '''
         <input
           type="checkbox"
           checked
           />
       '''
 
-      html = bHtml '''
+      source = '''
         <p
           @data-foo
       '''
-      assert html is '''
+      assert bHtml(source, demo: true) is '''
         <p
           data-foo
           >
