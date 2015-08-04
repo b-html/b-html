@@ -8,6 +8,7 @@ describe 'Attribute', ->
         <p
           @class foo
       '''
+      assert bHtml(source) is '<p class="foo"></p>'
       assert bHtml(source, demo: true) is '''
         <p
           class="foo"
@@ -20,6 +21,7 @@ describe 'Attribute', ->
           @class foo
           @id bar
       '''
+      assert bHtml(source) is '<p class="foo" id="bar"></p>'
       assert bHtml(source, demo: true) is '''
         <p
           class="foo"
@@ -35,6 +37,7 @@ describe 'Attribute', ->
           @type checkbox
           @checked
       '''
+      assert bHtml(source) is '<input type="checkbox" checked />'
       assert bHtml(source, demo: true) is '''
         <input
           type="checkbox"
@@ -46,6 +49,7 @@ describe 'Attribute', ->
         <p
           @data-foo
       '''
+      assert bHtml(source) is '<p data-foo></p>'
       assert bHtml(source, demo: true) is '''
         <p
           data-foo

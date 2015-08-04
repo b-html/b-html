@@ -12,6 +12,7 @@ describe 'EmptyElement', ->
       </img
         @src /images/sample.png
     '''
+    assert bHtml(source) is '<img src="/images/sample.png" />'
     assert bHtml(source, demo: true) is '''
       <img
         src="/images/sample.png"
@@ -20,12 +21,13 @@ describe 'EmptyElement', ->
 
     source = '''
       </img
-        @alt sample image
+        @alt sample
         @src /images/sample.png
     '''
+    assert bHtml(source) is '<img alt="sample" src="/images/sample.png" />'
     assert bHtml(source, demo: true) is '''
       <img
-        alt="sample image"
+        alt="sample"
         src="/images/sample.png"
         />
     '''

@@ -6,6 +6,7 @@ describe 'Element', ->
     source = '''
       <p
     '''
+    assert bHtml(source) is '<p></p>'
     assert bHtml(source, demo: true) is '''
       <p>
       </p>
@@ -15,6 +16,7 @@ describe 'Element', ->
       <p
       <p
     '''
+    assert bHtml(source) is '<p></p><p></p>'
     assert bHtml(source, demo: true) is '''
       <p>
       </p>
@@ -26,6 +28,7 @@ describe 'Element', ->
       <p
         <p
     '''
+    assert bHtml(source) is '<p><p></p></p>'
     assert bHtml(source, demo: true) is '''
       <p>
         <p>
@@ -38,6 +41,7 @@ describe 'Element', ->
         <p
         <p
     '''
+    assert bHtml(source) is '<p><p></p><p></p></p>'
     assert bHtml(source, demo: true) is '''
       <p>
         <p>

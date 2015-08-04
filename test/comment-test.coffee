@@ -6,17 +6,20 @@ describe 'Comment', ->
     source = '''
       <!
     '''
+    assert bHtml(source) is ''
     assert bHtml(source, demo: true) is ''
 
     source = '''
       <! foo
     '''
+    assert bHtml(source) is ''
     assert bHtml(source, demo: true) is ''
 
     source = '''
       <! foo
       <! bar
     '''
+    assert bHtml(source) is ''
     assert bHtml(source, demo: true) is ''
 
   context '(errors)', ->
