@@ -15,11 +15,17 @@ class Attribute extends Node
     prev.setAttribute @
     prev
 
-  write: ->
-    indent = [0...@level].map((i) -> ' ').join ''
-    if @value?
-      "#{indent}#{@name}=\"#{@value}\"\n"
+  write: ({ demo }) ->
+    if demo
+      indent = [0...@level].map((i) -> ' ').join ''
+      if @value?
+        "#{indent}#{@name}=\"#{@value}\"\n"
+      else
+        "#{indent}#{@name}\n"
     else
-      "#{indent}#{@name}\n"
+      if @value?
+        "#{@name}=\"#{@value}\""
+      else
+        "#{@name}"
 
 module.exports.Attribute = Attribute

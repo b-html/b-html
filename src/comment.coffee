@@ -9,7 +9,10 @@ class Comment extends Node
     if m?
       new Comment { level }
 
-  write: ->
-    ''
+  write: ({ demo }) ->
+    if demo
+      ''
+    else
+      ''
 
 module.exports.Comment = Comment
