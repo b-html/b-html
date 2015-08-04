@@ -14,17 +14,28 @@ class Element extends Node
     @children.push n
     n.parent = @
 
-  write: ->
+  write: ({ demo }) ->
     indent = [0...@level].map((i) -> ' ').join ''
-    attributes = @attributes.map((i) -> i.write()).join ''
-    attributes = if attributes.length > 0
-      '\n' + attributes + indent + '  ' # attrs is child (+2 level)
+    if demo
+      attributes = @attributes.map((i) -> i.write { demo }).join ''
+      attributes = if attributes.length > 0
+        '\n' + attributes + indent + '  ' # attrs is child (+2 level)
+      else
+        ''
+      children = @children.map((i) -> i.write { demo }).join ''
+      """
+      #{indent}<#{@name}#{attributes}>
+      #{children}#{indent}</#{@name}>\n
+      """
     else
-      ''
-    children = @children.map((i) -> i.write()).join ''
-    """
-    #{indent}<#{@name}#{attributes}>
-    #{children}#{indent}</#{@name}>\n
-    """
+      attributes = @attributes.map((i) -> i.write { demo }).join ' '
+      attributes = if attributes.length > 0
+        ' ' + attributes
+      else
+        ''
+      children = @children.map((i) -> i.write { demo }).join ''
+      """
+      <#{@name}#{attributes}>#{children}</#{@name}>
+      """
 
 module.exports.Element = Element

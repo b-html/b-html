@@ -9,11 +9,14 @@ class Text extends Node
     if m?
       new Text { level, content: m[1] }
 
-  write: ->
+  write: ({ demo }) ->
     indent = [0...@level].map((i) -> ' ').join ''
-    children = @children.map((i) -> i.write()).join ''
-    """
-    #{indent}#{@content}\n#{children}
-    """
+    children = @children.map((i) -> i.write { demo }).join ''
+    if demo
+      """
+      #{indent}#{@content}\n#{children}
+      """
+    else
+      "#{@content}#{children}"
 
 module.exports.Text = Text

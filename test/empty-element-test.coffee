@@ -3,29 +3,31 @@ bHtml = require './'
 
 describe 'EmptyElement', ->
   it 'works', ->
-    html = bHtml '''
+    source = '''
       </img
     '''
-    assert html is '<img />'
+    assert bHtml(source, demo: true) is '<img />'
 
-    html = bHtml '''
+    source = '''
       </img
         @src /images/sample.png
     '''
-    assert html is '''
+    assert bHtml(source) is '<img src="/images/sample.png" />'
+    assert bHtml(source, demo: true) is '''
       <img
         src="/images/sample.png"
         />
     '''
 
-    html = bHtml '''
+    source = '''
       </img
-        @alt sample image
+        @alt sample
         @src /images/sample.png
     '''
-    assert html is '''
+    assert bHtml(source) is '<img alt="sample" src="/images/sample.png" />'
+    assert bHtml(source, demo: true) is '''
       <img
-        alt="sample image"
+        alt="sample"
         src="/images/sample.png"
         />
     '''

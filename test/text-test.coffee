@@ -4,114 +4,127 @@ bHtml = require './'
 describe 'Text', ->
   context '>', ->
     it 'works', ->
-      html = bHtml '''
+      source = '''
         >text
       '''
-      assert html is '''
+      assert bHtml(source) is 'text'
+      assert bHtml(source, demo: true) is '''
         text
       '''
 
-      html = bHtml '''
+      source = '''
         >line1
         >line2
       '''
-      assert html is '''
+      assert bHtml(source) is 'line1line2'
+      assert bHtml(source, demo: true) is '''
         line1
         line2
       '''
 
-      html = bHtml '''
+      source = '''
         <p
           >text
       '''
-      assert html is '''
+      assert bHtml(source) is '<p>text</p>'
+      assert bHtml(source, demo: true) is '''
         <p>
           text
         </p>
       '''
 
-      html = bHtml '''
+      source = '''
         <p
           >line1
           >line2
       '''
-      assert html is '''
+      assert bHtml(source) is '<p>line1line2</p>'
+      assert bHtml(source, demo: true) is '''
         <p>
           line1
           line2
         </p>
       '''
 
-      html = bHtml '''
+      source = '''
         <p
           >line1
           >
           >line3
       '''
+      assert bHtml(source) is '<p>line1line3</p>'
       # NOTE: prevent to remove trailing spaces
-      assert html is '<p>\n  line1\n  \n  line3\n</p>'
+      assert bHtml(source, demo: true) is '<p>\n  line1\n  \n  line3\n</p>'
 
       # NOTE: escape attribute
-      html = bHtml '''
+      source = '''
         >@text
       '''
-      assert html is '''
+      assert bHtml(source) is '@text'
+      assert bHtml(source, demo: true) is '''
         @text
       '''
 
       # NOTE: escape element
-      html = bHtml '''
+      source = '''
         ><text
       '''
-      assert html is '''
+      assert bHtml(source) is '<text'
+      assert bHtml(source, demo: true) is '''
         <text
       '''
 
       # NOTE: escape text
-      html = bHtml '''
+      source = '''
         >>text
       '''
-      assert html is '''
+      assert bHtml(source) is '>text'
+      assert bHtml(source, demo: true) is '''
         >text
       '''
 
   context '(default)', ->
     it 'works', ->
-      html = bHtml '\n'
-      assert html is ''
+      source = '\n'
+      assert bHtml(source) is ''
+      assert bHtml(source, demo: true) is ''
 
-      html = bHtml '''
+      source = '''
         text
       '''
-      assert html is '''
+      assert bHtml(source) is 'text'
+      assert bHtml(source, demo: true) is '''
         text
       '''
 
-      html = bHtml '''
+      source = '''
         line1
         line2
       '''
-      assert html is '''
+      assert bHtml(source) is 'line1line2'
+      assert bHtml(source, demo: true) is '''
         line1
         line2
       '''
 
-      html = bHtml '''
+      source = '''
         <p
           text
       '''
-      assert html is '''
+      assert bHtml(source) is '<p>text</p>'
+      assert bHtml(source, demo: true) is '''
         <p>
           text
         </p>
       '''
 
-      html = bHtml '''
+      source = '''
         <p
           line1
           line2
       '''
-      assert html is '''
+      assert bHtml(source) is '<p>line1line2</p>'
+      assert bHtml(source, demo: true) is '''
         <p>
           line1
           line2
@@ -119,8 +132,9 @@ describe 'Text', ->
       '''
 
       # NOTE: prevent to remove trailing space
-      html = bHtml '<p\n  line1\n  \n  line3'
-      assert html is '<p>\n  line1\n  \n  line3\n</p>'
+      source = '<p\n  line1\n  \n  line3'
+      assert bHtml(source) is '<p>line1line3</p>'
+      assert bHtml(source, demo: true) is '<p>\n  line1\n  \n  line3\n</p>'
 
   context '(errors)', ->
     it 'works', ->

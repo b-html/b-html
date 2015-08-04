@@ -22,7 +22,7 @@ parseNode = (level, node) ->
     i.parse level, node
   , null
 
-module.exports = (s) ->
+module.exports = (s, { demo } = { demo: false }) ->
   root = parseNode 0, '<root'
   root.parent = root
   prev = root
@@ -31,5 +31,8 @@ module.exports = (s) ->
     { level, node } = parseLevel line
     n = parseNode level, node
     prev = n.append prev
-  html = root.children.map((i) -> i.write()).join('')
-  html.substring 0, html.length - 1
+  html = root.children.map((i) -> i.write { demo }).join('')
+  if demo
+    html.substring(0, html.length - 1)
+  else
+    html

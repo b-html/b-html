@@ -3,42 +3,46 @@ bHtml = require './'
 
 describe 'Element', ->
   it 'works', ->
-    html = bHtml '''
+    source = '''
       <p
     '''
-    assert html is '''
+    assert bHtml(source) is '<p></p>'
+    assert bHtml(source, demo: true) is '''
       <p>
       </p>
     '''
 
-    html = bHtml '''
+    source = '''
       <p
       <p
     '''
-    assert html is '''
+    assert bHtml(source) is '<p></p><p></p>'
+    assert bHtml(source, demo: true) is '''
       <p>
       </p>
       <p>
       </p>
     '''
 
-    html = bHtml '''
+    source = '''
       <p
         <p
     '''
-    assert html is '''
+    assert bHtml(source) is '<p><p></p></p>'
+    assert bHtml(source, demo: true) is '''
       <p>
         <p>
         </p>
       </p>
     '''
 
-    html = bHtml '''
+    source = '''
       <p
         <p
         <p
     '''
-    assert html is '''
+    assert bHtml(source) is '<p><p></p><p></p></p>'
+    assert bHtml(source, demo: true) is '''
       <p>
         <p>
         </p>
