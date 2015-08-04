@@ -44,7 +44,7 @@ index.bhtml (b-html) :
         @src /images/sample.png
 ```
 
-index.html (compiled b-html) :
+index.html (compiled b-html && formatted for demo) :
 
 ```html
 <!DOCTYPE html>
