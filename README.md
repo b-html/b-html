@@ -88,17 +88,85 @@ bHtml('<p') === '<p></p>';
 
 ## Syntax Reference
 
- Symbol          | Name          | Parent   | Child    | Examples
------------------|---------------|----------|----------|---------------------
- `  ` (2 space)  | -             | -        | -        | See: ["Off-side rule"](https://en.wikipedia.org/wiki/Off-side_rule)
- `<`             | Element       | MAY      | MAY      | `<p` -> `<p></p>`
- `</`            | Empty Element | MAY      | MUST NOT | `</img` -> `<img />`
- `<!`            | Comment       | MAY      | MUST NOT | `<!` -> (remove)
- `@`             | Attribute     | MUST     | MUST NOT | `@class foo` -> `class="foo"`
- `>`             | Text          | MAY      | MUST NOT | `>text` -> `text`<br />`><text` -> `<text`<br />`>@text` -> `@text`<br />`>>text` -> `>text`<br />`><!-- comment -->` -> `<!-- comment -->`<br />`><!DOCTYPE html>` -> `<!DOCTYPE html>`<br />`><?xml version="1.0"?>` -> `<?xml version="1.0"?>`
- others          | Text          | MAY      | MUST NOT | `text` -> `text`
+<table>
+    <tr>
+      <th>Symbol</th>
+      <th>Name</th>
+      <th>Parent</th>
+      <th>Child</th>
+      <th>Examples</th>
+    </tr>
+    <tr>
+      <td><code>  </code> (2 space)</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>See: <a href="https://en.wikipedia.org/wiki/Off-side_rule">Off-side rule</a></td>
+    </tr>
+    <tr>
+      <td><code>&lt;</code></td>
+      <td>Element</td>
+      <td>MAY</td>
+      <td>MAY</td>
+      <td><code>&lt;p</code> -> <code>&lt;p&gt;&lt;/p&gt;</code></td>
+    </tr>
+    <tr>
+      <td><code>&lt;/</code></td>
+      <td>Empty Element</td>
+      <td>MAY</td>
+      <td>MUST NOT</td>
+      <td><code>&lt;/img</code> -> <code>&lt;img /&gt;</code></td>
+    </tr>
+    <tr>
+      <td><code>&lt;!</code></td>
+      <td>Comment</td>
+      <td>MAY</td>
+      <td>MUST NOT</td>
+      <td><code>&lt;!</code> -> (remove)</td>
+    </tr>
+    <tr>
+      <td><code>@</code></td>
+      <td>Attribute</td>
+      <td>MUST</td>
+      <td>MUST NOT</td>
+      <td><code>@class foo</code> -> <code>class="foo"</code></td>
+    </tr>
+    <tr>
+      <td><code>&gt;</code></td>
+      <td>Text</td>
+      <td>MAY</td>
+      <td>MUST NOT</td>
+      <td>
+        <code>&gt;text</code> -> <code>text</code><br />
+        <code>&gt;&lt;text</code> -> <code>&lt;text</code><br />
+        <code>&gt;@text</code> -> <code>@text</code><br />
+        <code>&gt;&gt;text</code> -> <code>&gt;text</code><br />
+        <code>&gt;|text</code> -> <code>|text</code>
+      </td>
+    </tr>
+    <tr>
+      <td><code>|</code></td>
+      <td>New Line Text</td>
+      <td>MAY</td>
+      <td>MUST NOT</td>
+      <td>
+        <code>|text</code> -> <code>&lt;NL&gt;text</code><br />
+        <code>|&lt;text</code> -> <code>&lt;NL&gt;&lt;text</code><br />
+        <code>|@text</code> -> <code>&lt;NL&gt;@text</code><br />
+        <code>|&gt;text</code> -> <code>&lt;NL&gt;&gt;text</code><br />
+        <code>||text</code> -> <code>&lt;NL&gt;|text</code>
+      </td>
+    </tr>
+    <tr>
+      <td>others</td>
+      <td>Default Text</td>
+      <td>MAY</td>
+      <td>MUST NOT</td>
+      <td><code>text</code> -> <code>text</code></td>
+    </tr>
+</table>
 
- See: [Demo](http://b-html.github.io/b-html-demo/) ( [b-html/b-html-demo](https://github.com/b-html/b-html-demo/) )
+Try: [Demo](http://b-html.github.io/b-html-demo/) ( [b-html/b-html-demo](https://github.com/b-html/b-html-demo/) )
 
 ## Related Projects
 

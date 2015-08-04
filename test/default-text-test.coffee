@@ -1,10 +1,14 @@
 assert = require 'power-assert'
 bHtml = require './'
 
-describe 'Text (>)', ->
+describe 'DefaultText (default)', ->
   it 'works', ->
+    source = '\n'
+    assert bHtml(source) is ''
+    assert bHtml(source, demo: true) is ''
+
     source = '''
-      >text
+      text
     '''
     assert bHtml(source) is 'text'
     assert bHtml(source, demo: true) is '''
@@ -12,8 +16,8 @@ describe 'Text (>)', ->
     '''
 
     source = '''
-      >line1
-      >line2
+      line1
+      line2
     '''
     assert bHtml(source) is 'line1line2'
     assert bHtml(source, demo: true) is '''
@@ -23,7 +27,7 @@ describe 'Text (>)', ->
 
     source = '''
       <p
-        >text
+        text
     '''
     assert bHtml(source) is '<p>text</p>'
     assert bHtml(source, demo: true) is '''
@@ -34,8 +38,8 @@ describe 'Text (>)', ->
 
     source = '''
       <p
-        >line1
-        >line2
+        line1
+        line2
     '''
     assert bHtml(source) is '<p>line1line2</p>'
     assert bHtml(source, demo: true) is '''
@@ -45,42 +49,10 @@ describe 'Text (>)', ->
       </p>
     '''
 
-    source = '''
-      <p
-        >line1
-        >
-        >line3
-    '''
+    # NOTE: prevent to remove trailing space
+    source = '<p\n  line1\n  \n  line3'
     assert bHtml(source) is '<p>line1line3</p>'
-    # NOTE: prevent to remove trailing spaces
     assert bHtml(source, demo: true) is '<p>\n  line1\n  \n  line3\n</p>'
-
-    # NOTE: escape attribute
-    source = '''
-      >@text
-    '''
-    assert bHtml(source) is '@text'
-    assert bHtml(source, demo: true) is '''
-      @text
-    '''
-
-    # NOTE: escape element
-    source = '''
-      ><text
-    '''
-    assert bHtml(source) is '<text'
-    assert bHtml(source, demo: true) is '''
-      <text
-    '''
-
-    # NOTE: escape text
-    source = '''
-      >>text
-    '''
-    assert bHtml(source) is '>text'
-    assert bHtml(source, demo: true) is '''
-      >text
-    '''
 
   context '(errors)', ->
     it 'works', ->

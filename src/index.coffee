@@ -2,7 +2,9 @@
 {Comment} = require './comment'
 {Element} = require './element'
 {EmptyElement} = require './empty-element'
+{NewLineText} = require './new-line-text'
 {Text} = require './text'
+{DefaultText} = require './default-text'
 
 parseLevel = (s) ->
   match = s.match /^(?:  )*/
@@ -17,6 +19,8 @@ parseNode = (level, node) ->
     Element
     Attribute
     Text
+    NewLineText
+    DefaultText
   ].reduce (parsed, i) ->
     return parsed if parsed?
     i.parse level, node

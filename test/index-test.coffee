@@ -1,7 +1,7 @@
 assert = require 'power-assert'
 bHtml = require './'
 
-describe 'index', ->
+describe 'index README example', ->
   it 'works', ->
     source = '''
       ><!DOCTYPE html>
