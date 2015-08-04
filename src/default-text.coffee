@@ -1,22 +1,12 @@
-{Node} = require './node'
+{BaseText} = require './base-text'
 
-class DefaultText extends Node
-  constructor: ({ level, @content }) ->
-    super { level, type: 'default text' }
+class DefaultText extends BaseText
+  constructor: ({ level, content }) ->
+    super { level, type: 'default text', content, isNewLine: false }
 
   @parse: (level, node) ->
     m = node.match /^(.*)$/
     if m?
       new DefaultText { level, content: m[1] }
-
-  write: ({ demo }) ->
-    indent = [0...@level].map((i) -> ' ').join ''
-    children = @children.map((i) -> i.write { demo }).join ''
-    if demo
-      """
-      #{indent}#{@content}\n#{children}
-      """
-    else
-      "#{@content}#{children}"
 
 module.exports.DefaultText = DefaultText
