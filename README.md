@@ -159,7 +159,7 @@ bHtml('<p') === '<p></p>';
     </tr>
     <tr>
       <td>others</td>
-      <td>Text</td>
+      <td>Default Text</td>
       <td>MAY</td>
       <td>MUST NOT</td>
       <td><code>text</code> -> <code>text</code></td>
