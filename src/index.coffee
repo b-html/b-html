@@ -4,6 +4,7 @@
 {EmptyElement} = require './empty-element'
 {NewLineText} = require './new-line-text'
 {Text} = require './text'
+{DefaultText} = require './default-text'
 
 parseLevel = (s) ->
   match = s.match /^(?:  )*/
@@ -17,8 +18,9 @@ parseNode = (level, node) ->
     EmptyElement
     Element
     Attribute
-    NewLineText
     Text
+    NewLineText
+    DefaultText
   ].reduce (parsed, i) ->
     return parsed if parsed?
     i.parse level, node
