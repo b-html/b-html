@@ -2,6 +2,7 @@
 {Comment} = require './comment'
 {Element} = require './element'
 {EmptyElement} = require './empty-element'
+{NewLineText} = require './new-line-text'
 {Text} = require './text'
 
 parseLevel = (s) ->
@@ -16,6 +17,7 @@ parseNode = (level, node) ->
     EmptyElement
     Element
     Attribute
+    NewLineText
     Text
   ].reduce (parsed, i) ->
     return parsed if parsed?
