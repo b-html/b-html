@@ -1,7 +1,7 @@
 assert = require 'power-assert'
 bHtml = require './'
 
-describe 'Attribute', ->
+describe 'Attribute (@)', ->
   context 'with value', ->
     it 'works', ->
       source = '''

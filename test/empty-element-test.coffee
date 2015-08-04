@@ -1,7 +1,7 @@
 assert = require 'power-assert'
 bHtml = require './'
 
-describe 'EmptyElement', ->
+describe 'EmptyElement (</)', ->
   it 'works', ->
     source = '''
       </img

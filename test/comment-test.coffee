@@ -1,7 +1,7 @@
 assert = require 'power-assert'
 bHtml = require './'
 
-describe 'Comment', ->
+describe 'Comment (<!)', ->
   it 'works', ->
     source = '''
       <!

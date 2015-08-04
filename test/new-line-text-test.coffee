@@ -1,7 +1,7 @@
 assert = require 'power-assert'
 bHtml = require './'
 
-describe 'NewLineText', ->
+describe 'NewLineText (|)', ->
   it 'works', ->
     source = '''
       |text

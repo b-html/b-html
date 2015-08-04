@@ -1,7 +1,7 @@
 assert = require 'power-assert'
 bHtml = require './'
 
-describe 'Text', ->
+describe 'Text (>)', ->
   it 'works', ->
     source = '''
       >text
