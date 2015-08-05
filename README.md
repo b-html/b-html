@@ -1,4 +1,4 @@
-# ![b-html](https://cloud.githubusercontent.com/assets/1221346/9025477/cc197724-3940-11e5-95ba-0ac9bd8615b3.png)
+# ![b-html](https://cloud.githubusercontent.com/assets/1221346/9085449/cab43882-3bb7-11e5-825e-f7db99cadfb8.png)
 
 An easy HTML syntax sugar.
 
@@ -170,10 +170,11 @@ Try: [Demo](http://b-html.github.io/b-html-demo/) ( [b-html/b-html-demo](https:/
 
 ## Related Projects
 
-- [b-html/gulp-b-html](https://github.com/b-html/gulp-b-html/) ... A gulp plugin for b-html.
+- [b-html/gulp-b-html](https://github.com/b-html/gulp-b-html) ... A gulp plugin for b-html.
 - [b-html/b-htmlify](https://github.com/b-html/b-htmlify) ... A browserify transform for b-html.
-- [b-html/b-html-demo](https://github.com/b-html/b-html-demo/) ... A demo for b-html.
+- [b-html/b-html-demo](https://github.com/b-html/b-html-demo) ... A demo for b-html.
 - [b-html/atom-language-b-html](https://github.com/b-html/atom-language-b-html) ... b-html support in Atom.
+- [b-html/b-html-logo](https://github.com/b-html/b-html-logo) ... A logo for b-html.
 
 ## Status Badge
 
