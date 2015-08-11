@@ -170,6 +170,8 @@ Try: [Demo](http://b-html.github.io/b-html-demo/) ( [b-html/b-html-demo](https:/
 
 ## Related Projects
 
+- [b-html/b-html-cli](https://github.com/b-html/b-html-cli) ... A CLI for b-html (b-html to HTML converter).
+- [b-html/html2bhtml](https://github.com/b-html/html2bhtml) ... HTML to b-html converter.
 - [b-html/gulp-b-html](https://github.com/b-html/gulp-b-html) ... A gulp plugin for b-html.
 - [b-html/b-htmlify](https://github.com/b-html/b-htmlify) ... A browserify transform for b-html.
 - [b-html/b-html-demo](https://github.com/b-html/b-html-demo) ... A demo for b-html.
