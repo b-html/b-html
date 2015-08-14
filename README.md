@@ -175,6 +175,7 @@ Try: [Demo](http://b-html.github.io/b-html-demo/) ( [b-html/b-html-demo](https:/
 - [b-html/gulp-b-html](https://github.com/b-html/gulp-b-html) ... A gulp plugin for b-html.
 - [b-html/b-htmlify](https://github.com/b-html/b-htmlify) ... A browserify transform for b-html.
 - [b-html/b-html-demo](https://github.com/b-html/b-html-demo) ... A demo for b-html.
+- [zakuro9715/vim-b-html](https://github.com/zakuro9715/vim-b-html) ... b-html syntaxt highlighting for vim.
 - [b-html/atom-language-b-html](https://github.com/b-html/atom-language-b-html) ... b-html support in Atom.
 - [b-html/b-html-logo](https://github.com/b-html/b-html-logo) ... A logo for b-html.
 
