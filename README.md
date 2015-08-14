@@ -1,5 +1,7 @@
 # ![b-html](https://cloud.githubusercontent.com/assets/1221346/9085449/cab43882-3bb7-11e5-825e-f7db99cadfb8.png)
 
+[![Join the chat at https://gitter.im/b-html/b-html](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/b-html/b-html?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 An easy HTML syntax sugar.
 
 Concepts:
