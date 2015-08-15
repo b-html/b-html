@@ -39,11 +39,19 @@ describe 'EmptyElement (</)', ->
           </img
               </img
         '''
-      assert.throws f, /too deep indentation/
+      assert.throws f, ({ columnNumber, lineNumber, message }) ->
+        assert columnNumber is 4
+        assert lineNumber is 2
+        assert message is 'too deep indentation'
+        true
 
       f = ->
         bHtml '''
           </img
             </img
         '''
-      assert.throws f, /empty element must not have a child/
+      assert.throws f, ({ columnNumber, lineNumber, message }) ->
+        assert columnNumber is 2
+        assert lineNumber is 2
+        assert message is 'empty element must not have a child'
+        true

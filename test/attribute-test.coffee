@@ -60,33 +60,37 @@ describe 'Attribute (@)', ->
 
   context '(errors)', ->
     it 'works', ->
-      # NOTE: too deep indentation
-      # f = ->
-      #   bHtml '''
-      #     <p
-      #       @class foo
-      #         @class bar
-      #   '''
-      # assert.throws f, /attribute doesn't have a child/
-
       f = ->
         bHtml '''
           <p
               @class foo
         '''
-      assert.throws f, /too deep indentation/
+      assert.throws f, ({ columnNumber, lineNumber, message }) ->
+        assert columnNumber is 4
+        assert lineNumber is 2
+        assert message is 'too deep indentation'
+        true
 
+      # NOTE: attribute doesn't have a child
       f = ->
         bHtml '''
           <p
             @class foo
               @id bar
         '''
-      assert.throws f, /too deep indentation/
+      assert.throws f, ({ columnNumber, lineNumber, message }) ->
+        assert columnNumber is 4
+        assert lineNumber is 3
+        assert message is 'too deep indentation'
+        true
 
       f = ->
         bHtml '''
           <p
           @class foo
         '''
-      assert.throws f, /attribute must have a parent/
+      assert.throws f, ({ columnNumber, lineNumber, message }) ->
+        assert columnNumber is 0
+        assert lineNumber is 2
+        assert message is 'attribute must have a parent'
+        true

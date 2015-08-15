@@ -34,11 +34,18 @@ module.exports = (s, { demo } = { demo: false }) ->
   root = parseNode 0, '<root'
   root.parent = root
   prev = root
-  s.split(/\n/).forEach (line) ->
+  s.split(/\n/).forEach (line, index) ->
     return if line.length is 0
-    { level, node } = parseLevel line
-    n = parseNode level, node
-    prev = n.append prev
+    try
+      { level, node } = parseLevel line
+      n = parseNode level, node
+      prev = n.append prev
+    catch e
+      error = new Error()
+      error.lineNumber = index + 1
+      error.columnNumber = level
+      error.message = e.message
+      throw error
   html = root.children.map((i) -> i.write { demo }).join('')
   if demo
     html.substring(0, html.length - 1)
