@@ -5,7 +5,7 @@ class Comment extends Node
     super { level, type: 'comment' }
 
   @parse: (level, node) ->
-    m = node.match /^<!.*$/
+    m = node.match /^<-.*$/
     if m?
       new Comment { level }
 

@@ -31,7 +31,7 @@ index.bhtml (b-html) :
     <title
       TITLE
   <body
-    <! b-html comment
+    <- b-html comment
     ><!-- HTML comment -->
     <h1
       @class title
@@ -118,11 +118,11 @@ bHtml('<p') === '<p></p>';
       <td><code>&lt;/img</code> -> <code>&lt;img /&gt;</code></td>
     </tr>
     <tr>
-      <td><code>&lt;!</code></td>
+      <td><code>&lt;-</code></td>
       <td>Comment</td>
       <td>MAY</td>
       <td>MUST NOT</td>
-      <td><code>&lt;!</code> -> (remove)</td>
+      <td><code>&lt;-</code> -> (remove)</td>
     </tr>
     <tr>
       <td><code>@</code></td>
