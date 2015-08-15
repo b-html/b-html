@@ -27,13 +27,21 @@ describe 'BHtmlComment (<-)', ->
       f = ->
         bHtml '''
           <- abc
-            <- def
+              <- def
         '''
-      assert.throws f, /comment must not have a child/
+      assert.throws f, ({ columnNumber, lineNumber, message }) ->
+        assert columnNumber is 4
+        assert lineNumber is 2
+        assert message is 'too deep indentation'
+        true
 
       f = ->
         bHtml '''
-          <- hoge
-              <- fuga
+          <- abc
+            <- def
         '''
-      assert.throws f, /too deep indentation/
+      assert.throws f, ({ columnNumber, lineNumber, message }) ->
+        assert columnNumber is 2
+        assert lineNumber is 2
+        assert message is 'b-html comment must not have a child'
+        true

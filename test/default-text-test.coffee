@@ -59,13 +59,21 @@ describe 'DefaultText (default)', ->
       f = ->
         bHtml '''
           line1
-            line2
+              line2
         '''
-      assert.throws f, /text must not have a child/
+      assert.throws f, ({ columnNumber, lineNumber, message }) ->
+        assert columnNumber is 4
+        assert lineNumber is 2
+        assert message is 'too deep indentation'
+        true
 
       f = ->
         bHtml '''
           line1
-              line2
+            line2
         '''
-      assert.throws f, /too deep indentation/
+      assert.throws f, ({ columnNumber, lineNumber, message }) ->
+        assert columnNumber is 2
+        assert lineNumber is 2
+        assert message is 'default text must not have a child'
+        true

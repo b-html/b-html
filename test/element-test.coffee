@@ -58,4 +58,8 @@ describe 'Element (<)', ->
           <p
               <p
         '''
-      assert.throws f, /too deep indentation/
+      assert.throws f, ({ columnNumber, lineNumber, message }) ->
+        assert columnNumber is 4
+        assert lineNumber is 2
+        assert message is 'too deep indentation'
+        true
