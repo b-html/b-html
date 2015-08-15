@@ -1,13 +1,13 @@
 {Node} = require './node'
 
-class Comment extends Node
+class BHtmlComment extends Node
   constructor: ({ level }) ->
-    super { level, type: 'comment' }
+    super { level, type: 'b-html comment' }
 
   @parse: (level, node) ->
     m = node.match /^<-.*$/
     if m?
-      new Comment { level }
+      new BHtmlComment { level }
 
   write: ({ demo }) ->
     if demo
@@ -15,4 +15,4 @@ class Comment extends Node
     else
       ''
 
-module.exports.Comment = Comment
+module.exports.BHtmlComment = BHtmlComment

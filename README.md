@@ -119,7 +119,7 @@ bHtml('<p') === '<p></p>';
     </tr>
     <tr>
       <td><code>&lt;-</code></td>
-      <td>Comment</td>
+      <td>b-html Comment</td>
       <td>MAY</td>
       <td>MUST NOT</td>
       <td><code>&lt;-</code> -> (remove)</td>

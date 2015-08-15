@@ -1,5 +1,5 @@
 {Attribute} = require './attribute'
-{Comment} = require './comment'
+{BHtmlComment} = require './b-html-comment'
 {Element} = require './element'
 {EmptyElement} = require './empty-element'
 {NewLineText} = require './new-line-text'
@@ -14,7 +14,7 @@ parseLevel = (s) ->
 
 parseNode = (level, node) ->
   [
-    Comment
+    BHtmlComment
     EmptyElement
     Element
     Attribute
