@@ -32,7 +32,7 @@ index.bhtml (b-html) :
       TITLE
   <body
     <- b-html comment
-    ><!-- HTML comment -->
+    <!--HTML comment
     <h1
       @class title
       HEADLINE
@@ -60,7 +60,7 @@ index.html (compiled b-html && formatted for demo) :
     </title>
   </head>
   <body>
-    <!-- HTML comment -->
+    <!--HTML comment-->
     <h1
       class="title"
       >
@@ -116,6 +116,13 @@ bHtml('<p') === '<p></p>';
       <td>MAY</td>
       <td>MUST NOT</td>
       <td><code>&lt;/img</code> -> <code>&lt;img /&gt;</code></td>
+    </tr>
+    <tr>
+      <td><code>&lt;!--</code></td>
+      <td>HTML Comment</td>
+      <td>MAY</td>
+      <td>MUST NOT</td>
+      <td><code>&lt;-- xyz</code> -> <code>&lt;!-- xyz --&gt;</code></td>
     </tr>
     <tr>
       <td><code>&lt;-</code></td>
