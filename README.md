@@ -22,7 +22,7 @@ $ npm install b-html
 index.bhtml (b-html) :
 
 ```b-html
-><!DOCTYPE html>
+<!doctype html
 <html
   @lang en
   <head
@@ -31,8 +31,8 @@ index.bhtml (b-html) :
     <title
       TITLE
   <body
-    <! b-html comment
-    ><!-- HTML comment -->
+    <- b-html comment
+    <!--HTML comment
     <h1
       @class title
       HEADLINE
@@ -60,7 +60,7 @@ index.html (compiled b-html && formatted for demo) :
     </title>
   </head>
   <body>
-    <!-- HTML comment -->
+    <!--HTML comment-->
     <h1
       class="title"
       >
@@ -118,11 +118,25 @@ bHtml('<p') === '<p></p>';
       <td><code>&lt;/img</code> -> <code>&lt;img /&gt;</code></td>
     </tr>
     <tr>
-      <td><code>&lt;!</code></td>
-      <td>Comment</td>
+      <td><code>&lt;!--</code></td>
+      <td>HTML Comment</td>
       <td>MAY</td>
       <td>MUST NOT</td>
-      <td><code>&lt;!</code> -> (remove)</td>
+      <td><code>&lt;-- xyz</code> -> <code>&lt;!-- xyz --&gt;</code></td>
+    </tr>
+    <tr>
+      <td><code>&lt;!doctype html</code></td>
+      <td>Doctype</td>
+      <td>MAY</td>
+      <td>MUST NOT</td>
+      <td><code>&lt;!doctype html</code> -> <code>&lt;!DOCTYPE html&gt;</code></td>
+    </tr>
+    <tr>
+      <td><code>&lt;-</code></td>
+      <td>b-html Comment</td>
+      <td>MAY</td>
+      <td>MUST NOT</td>
+      <td><code>&lt;-</code> -> (remove)</td>
     </tr>
     <tr>
       <td><code>@</code></td>

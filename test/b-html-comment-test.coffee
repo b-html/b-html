@@ -1,23 +1,23 @@
 assert = require 'power-assert'
 bHtml = require './'
 
-describe 'Comment (<!)', ->
+describe 'BHtmlComment (<-)', ->
   it 'works', ->
     source = '''
-      <!
+      <-
     '''
     assert bHtml(source) is ''
     assert bHtml(source, demo: true) is ''
 
     source = '''
-      <! foo
+      <- foo
     '''
     assert bHtml(source) is ''
     assert bHtml(source, demo: true) is ''
 
     source = '''
-      <! foo
-      <! bar
+      <- foo
+      <- bar
     '''
     assert bHtml(source) is ''
     assert bHtml(source, demo: true) is ''
@@ -26,14 +26,14 @@ describe 'Comment (<!)', ->
     it 'works', ->
       f = ->
         bHtml '''
-          <! abc
-            <! def
+          <- abc
+            <- def
         '''
       assert.throws f, /comment must not have a child/
 
       f = ->
         bHtml '''
-          <!-- hoge -->
-              <!-- hoge -->
+          <- hoge
+              <- fuga
         '''
       assert.throws f, /too deep indentation/

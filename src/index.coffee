@@ -1,10 +1,12 @@
 {Attribute} = require './attribute'
-{Comment} = require './comment'
+{BHtmlComment} = require './b-html-comment'
+{DefaultText} = require './default-text'
+{Doctype} = require './doctype'
 {Element} = require './element'
 {EmptyElement} = require './empty-element'
+{HtmlComment} = require './html-comment'
 {NewLineText} = require './new-line-text'
 {Text} = require './text'
-{DefaultText} = require './default-text'
 
 parseLevel = (s) ->
   match = s.match /^(?:  )*/
@@ -14,7 +16,9 @@ parseLevel = (s) ->
 
 parseNode = (level, node) ->
   [
-    Comment
+    BHtmlComment
+    Doctype
+    HtmlComment
     EmptyElement
     Element
     Attribute
