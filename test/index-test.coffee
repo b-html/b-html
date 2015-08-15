@@ -4,7 +4,7 @@ bHtml = require './'
 describe 'index README example', ->
   it 'works', ->
     source = '''
-      ><!DOCTYPE html>
+      <!doctype html
       <html
         @lang en
         <head

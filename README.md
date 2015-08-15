@@ -22,7 +22,7 @@ $ npm install b-html
 index.bhtml (b-html) :
 
 ```b-html
-><!DOCTYPE html>
+<!doctype html
 <html
   @lang en
   <head
@@ -123,6 +123,13 @@ bHtml('<p') === '<p></p>';
       <td>MAY</td>
       <td>MUST NOT</td>
       <td><code>&lt;-- xyz</code> -> <code>&lt;!-- xyz --&gt;</code></td>
+    </tr>
+    <tr>
+      <td><code>&lt;!doctype html</code></td>
+      <td>Doctype</td>
+      <td>MAY</td>
+      <td>MUST NOT</td>
+      <td><code>&lt;!doctype html</code> -> <code>&lt;!DOCTYPE html&gt;</code></td>
     </tr>
     <tr>
       <td><code>&lt;-</code></td>
