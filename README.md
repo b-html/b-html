@@ -179,9 +179,10 @@ Try: [Demo](http://b-html.github.io/b-html-demo/) ( [b-html/b-html-demo](https:/
 - [b-html/atom-language-b-html](https://github.com/b-html/atom-language-b-html) ... b-html support in Atom.
 - [b-html/b-html-logo](https://github.com/b-html/b-html-logo) ... A logo for b-html.
 
-## Status Badge
+## Badges
 
 [![Circle CI](https://circleci.com/gh/b-html/b-html.svg?style=svg)](https://circleci.com/gh/b-html/b-html)
+[![Join the chat at https://gitter.im/b-html/b-html](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/b-html/b-html)
 
 ## License
 
