@@ -63,3 +63,14 @@ describe 'Element (<)', ->
         assert lineNumber is 2
         assert message is 'too deep indentation'
         true
+
+      f = ->
+        bHtml '''
+          <p
+            < p
+        '''
+      assert.throws f, ({ columnNumber, lineNumber, message }) ->
+        assert columnNumber is 2
+        assert lineNumber is 2
+        assert message is 'invalid element'
+        true

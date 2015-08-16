@@ -5,9 +5,13 @@ class Attribute extends Node
     super { level, type: 'attribute' }
 
   @parse: (level, node) ->
+    m = node.match /^@/
+    return null unless m?
     m = node.match /^@(\S+)(?:\s+(.+))?$/
     if m?
       new Attribute { level, name: m[1], value: m[2] }
+    else
+      throw new Error 'invalid attribute'
 
   append: (prev) ->
     throw new Error('too deep indentation') if @level > prev.level + 2
