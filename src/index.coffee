@@ -1,5 +1,4 @@
 {Attribute} = require './attribute'
-{BHtmlComment} = require './b-html-comment'
 {DefaultText} = require './default-text'
 {Doctype} = require './doctype'
 {Element} = require './element'
@@ -16,7 +15,6 @@ parseLevel = (s) ->
 
 parseNode = (level, node) ->
   [
-    BHtmlComment
     Doctype
     HtmlComment
     EmptyElement

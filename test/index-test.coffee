@@ -13,7 +13,6 @@ describe 'index README example', ->
           <title
             TITLE
         <body
-          <- b-html comment
           <!--HTML comment
           <h1
             @class title
