@@ -1,7 +1,7 @@
 assert = require 'power-assert'
 bHtml = require './'
 
-describe 'HtmlComment (<!--)', ->
+describe 'Comment (<!--)', ->
   it 'works', ->
     source = '''
       <!--xyz
@@ -34,5 +34,5 @@ describe 'HtmlComment (<!--)', ->
       assert.throws f, ({ columnNumber, lineNumber, message }) ->
         assert columnNumber is 2
         assert lineNumber is 2
-        assert message is 'html comment must not have a child'
+        assert message is 'comment must not have a child'
         true

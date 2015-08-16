@@ -1,9 +1,9 @@
 {Attribute} = require './attribute'
+{Comment} = require './comment'
 {DefaultText} = require './default-text'
 {Doctype} = require './doctype'
 {Element} = require './element'
 {EmptyElement} = require './empty-element'
-{HtmlComment} = require './html-comment'
 {NewLineText} = require './new-line-text'
 {Text} = require './text'
 
@@ -16,7 +16,7 @@ parseLevel = (s) ->
 parseNode = (level, node) ->
   [
     Doctype
-    HtmlComment
+    Comment
     EmptyElement
     Element
     Attribute
