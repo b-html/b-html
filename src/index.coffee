@@ -15,14 +15,14 @@ parseLevel = (s) ->
 
 parseNode = (level, node) ->
   [
-    Doctype
-    Comment
-    EmptyElement
-    Element
-    Attribute
-    Text
-    NewLineText
-    DefaultText
+    Doctype      # <!doctype
+    Comment      # <!--
+    EmptyElement # </
+    Element      # <
+    Attribute    # @
+    Text         # >
+    NewLineText  # |
+    DefaultText  # others
   ].reduce (parsed, i) ->
     return parsed if parsed?
     i.parse level, node
