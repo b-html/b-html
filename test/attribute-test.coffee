@@ -30,6 +30,15 @@ describe 'Attribute (@)', ->
         </p>
       '''
 
+      source = '<p\n  @class ' # with trailing space
+      assert bHtml(source) is '<p class=""></p>'
+      assert bHtml(source, demo: true) is '''
+        <p
+          class=""
+          >
+        </p>
+      '''
+
   context 'without value', ->
     it 'works', ->
       source = '''
@@ -56,7 +65,6 @@ describe 'Attribute (@)', ->
           >
         </p>
       '''
-
 
   context '(errors)', ->
     it 'works', ->

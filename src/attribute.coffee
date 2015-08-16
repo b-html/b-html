@@ -7,7 +7,7 @@ class Attribute extends Node
   @parse: (level, node) ->
     m = node.match /^@/
     return null unless m?
-    m = node.match /^@(\S+)(?:\s+(.+))?$/
+    m = node.match /^@(\S+)(?: (.*))?$/
     if m?
       new Attribute { level, name: m[1], value: m[2] }
     else
