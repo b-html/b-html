@@ -128,7 +128,7 @@ bHtml('<p') === '<p></p>';
       <td>Doctype</td>
       <td>MAY</td>
       <td>MUST NOT</td>
-      <td><code>&lt;!doctype html</code> -> <code>&lt;!DOCTYPE html&gt;</code></td>
+      <td><code>&lt;!doctype html</code> -> <code>&lt;!DOCTYPE html&gt;</code><br />See: <a href="#doctypes">#doctypes</a></td>
     </tr>
     <tr>
       <td><code>@</code></td>
@@ -173,6 +173,32 @@ bHtml('<p') === '<p></p>';
 </table>
 
 Try: [Demo](http://b-html.github.io/b-html-demo/) ( [b-html/b-html-demo](https://github.com/b-html/b-html-demo/) )
+
+### Doctypes
+
+- `<!doctype html` -> (HTML 5)
+- `<!doctype html 5` -> (HTML 5)
+- `<!doctype html 4.01 strict` -> (HTML 4.01 Strict)
+- `<!doctype html 4.01 transitional` -> (HTML 4.01 Transitional)
+- `<!doctype html 4.01 frameset` -> (HTML 4.01 Frameset)
+- `<!doctype html strict` -> (HTML 4.01 Strict)
+- `<!doctype html transitional` -> (HTML 4.01 Transitional)
+- `<!doctype html frameset` -> (HTML 4.01 Frameset)
+- `<!doctype xhtml 1.0 strict` -> (XHTML 1.0 Strict)
+- `<!doctype xhtml 1.0 transitional` -> (XHTML 1.0 Transitional)
+- `<!doctype xhtml 1.0 frameset` -> (XHTML 1.0 Frameset)
+- `<!doctype xhtml strict` -> (HTML 1.0 Strict)
+- `<!doctype xhtml transitional` -> (HTML 1.0 Transitional)
+- `<!doctype xhtml frameset` -> (HTML 1.0 Frameset)
+- `<!doctype xhtml 1.1` -> (XHTML 1.1)
+- `<!doctype xhtml basic` -> (XHTML Basic 1.1)
+- `<!doctype xhtml basic 1.0` -> (XHTML Basic 1.0)
+- `<!doctype xhtml basic 1.1` -> (XHTML Basic 1.1)
+- `<!doctype xhtml mobile` -> (XHTML Mobile 1.2)
+- `<!doctype xhtml mobile 1.0` -> (XHTML Mobile 1.0)
+- `<!doctype xhtml mobile 1.1` -> (XHTML Mobile 1.1)
+- `<!doctype xhtml mobile 1.2` -> (XHTML Mobile 1.2)
+- `<!doctype html PUBLIC ...` -> <!DOCTYPE html PUBLIC ...>
 
 ## Related Projects
 

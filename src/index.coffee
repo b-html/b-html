@@ -41,7 +41,7 @@ module.exports = (s, { demo } = { demo: false }) ->
     catch e
       error = new Error()
       error.lineNumber = index + 1
-      error.columnNumber = level
+      error.columnNumber = level + 1
       error.message = e.message
       throw error
   html = root.children.map((i) -> i.write { demo }).join('')

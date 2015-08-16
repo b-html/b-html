@@ -66,7 +66,7 @@ describe 'Attribute (@)', ->
               @class foo
         '''
       assert.throws f, ({ columnNumber, lineNumber, message }) ->
-        assert columnNumber is 4
+        assert columnNumber is 5
         assert lineNumber is 2
         assert message is 'too deep indentation'
         true
@@ -79,7 +79,7 @@ describe 'Attribute (@)', ->
               @id bar
         '''
       assert.throws f, ({ columnNumber, lineNumber, message }) ->
-        assert columnNumber is 4
+        assert columnNumber is 5
         assert lineNumber is 3
         assert message is 'too deep indentation'
         true
@@ -90,7 +90,7 @@ describe 'Attribute (@)', ->
           @class foo
         '''
       assert.throws f, ({ columnNumber, lineNumber, message }) ->
-        assert columnNumber is 0
+        assert columnNumber is 1
         assert lineNumber is 2
         assert message is 'attribute must have a parent'
         true
@@ -101,7 +101,7 @@ describe 'Attribute (@)', ->
             @ invalid
         '''
       assert.throws f, ({ columnNumber, lineNumber, message }) ->
-        assert columnNumber is 2
+        assert columnNumber is 3
         assert lineNumber is 2
         assert message is 'invalid attribute'
         true
