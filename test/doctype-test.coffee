@@ -337,3 +337,33 @@ describe 'Doctype (<!doctype)', ->
         assert lineNumber is 2
         assert message is 'doctype must not have a child'
         true
+
+      f = ->
+        bHtml '''
+          <!doctype foo
+        '''
+      assert.throws f, ({ columnNumber, lineNumber, message }) ->
+        assert columnNumber is 1
+        assert lineNumber is 1
+        assert message is 'invalid doctype'
+        true
+
+      f = ->
+        bHtml '''
+          <!doctype html bar
+        '''
+      assert.throws f, ({ columnNumber, lineNumber, message }) ->
+        assert columnNumber is 1
+        assert lineNumber is 1
+        assert message is 'invalid doctype'
+        true
+
+      f = ->
+        bHtml '''
+          <!doctype xhtml baz
+        '''
+      assert.throws f, ({ columnNumber, lineNumber, message }) ->
+        assert columnNumber is 1
+        assert lineNumber is 1
+        assert message is 'invalid doctype'
+        true
