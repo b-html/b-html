@@ -1,13 +1,13 @@
 {Node} = require './node'
 
-class HtmlComment extends Node
+class Comment extends Node
   constructor: ({ level, @value }) ->
-    super { level, type: 'html comment' }
+    super { level, type: 'comment' }
 
   @parse: (level, node) ->
     m = node.match /^<!--(.*)$/
     if m?
-      new HtmlComment { level, value: m[1] }
+      new Comment { level, value: m[1] }
 
   write: ({ demo }) ->
     if demo
@@ -16,4 +16,4 @@ class HtmlComment extends Node
     else
       "<!--#{@value}-->"
 
-module.exports.HtmlComment = HtmlComment
+module.exports.Comment = Comment
