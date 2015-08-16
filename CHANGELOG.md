@@ -1,3 +1,7 @@
+# 0.8.1 (2015-08-16)
+
+* Fix attribute with trailing space. (e.g. `@class ` -> `class=""`).
+
 # 0.8.0 (2015-08-16)
 
 * Delete b-html comment syntax (`<!`).
