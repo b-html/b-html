@@ -1,3 +1,11 @@
+# 0.8.0 (2015-08-16)
+
+* Delete b-html comment syntax (`<!`).
+* Add doctype syntax (`<!doctype`).
+* Add comment syntax (`<!--`).
+* Add error line and column.
+* Fix element with trailing space as text. (e.g. `<p `).
+
 # 0.7.0 (2015-08-04)
 
 * Change parsed format to remove white spaces.
