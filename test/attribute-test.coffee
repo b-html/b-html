@@ -94,3 +94,14 @@ describe 'Attribute (@)', ->
         assert lineNumber is 2
         assert message is 'attribute must have a parent'
         true
+
+      f = ->
+        bHtml '''
+          <p
+            @ invalid
+        '''
+      assert.throws f, ({ columnNumber, lineNumber, message }) ->
+        assert columnNumber is 2
+        assert lineNumber is 2
+        assert message is 'invalid attribute'
+        true
