@@ -5,9 +5,13 @@ class Element extends Node
     super { level, type: 'element' }
 
   @parse: (level, node) ->
+    m = node.match /^</
+    return null unless m?
     m = node.match /^<(\S+)$/
     if m?
       new Element { level, name: m[1] }
+    else
+      throw new Error 'invalid element'
 
   # override
   appendChild: (n) ->
