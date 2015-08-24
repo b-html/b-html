@@ -7,7 +7,7 @@ describe 'Text (>)', ->
       >text
     '''
     assert bHtml(source) is 'text'
-    assert bHtml(source, demo: true) is '''
+    assert bHtml(source, format: 'demo') is '''
       text
     '''
 
@@ -16,7 +16,7 @@ describe 'Text (>)', ->
       >line2
     '''
     assert bHtml(source) is 'line1line2'
-    assert bHtml(source, demo: true) is '''
+    assert bHtml(source, format: 'demo') is '''
       line1
       line2
     '''
@@ -26,7 +26,7 @@ describe 'Text (>)', ->
         >text
     '''
     assert bHtml(source) is '<p>text</p>'
-    assert bHtml(source, demo: true) is '''
+    assert bHtml(source, format: 'demo') is '''
       <p>
         text
       </p>
@@ -38,7 +38,7 @@ describe 'Text (>)', ->
         >line2
     '''
     assert bHtml(source) is '<p>line1line2</p>'
-    assert bHtml(source, demo: true) is '''
+    assert bHtml(source, format: 'demo') is '''
       <p>
         line1
         line2
@@ -53,14 +53,14 @@ describe 'Text (>)', ->
     '''
     assert bHtml(source) is '<p>line1line3</p>'
     # NOTE: prevent to remove trailing spaces
-    assert bHtml(source, demo: true) is '<p>\n  line1\n  \n  line3\n</p>'
+    assert bHtml(source, format: 'demo') is '<p>\n  line1\n  \n  line3\n</p>'
 
     # NOTE: escape attribute
     source = '''
       >@text
     '''
     assert bHtml(source) is '@text'
-    assert bHtml(source, demo: true) is '''
+    assert bHtml(source, format: 'demo') is '''
       @text
     '''
 
@@ -69,7 +69,7 @@ describe 'Text (>)', ->
       ><text
     '''
     assert bHtml(source) is '<text'
-    assert bHtml(source, demo: true) is '''
+    assert bHtml(source, format: 'demo') is '''
       <text
     '''
 
@@ -78,7 +78,7 @@ describe 'Text (>)', ->
       >>text
     '''
     assert bHtml(source) is '>text'
-    assert bHtml(source, demo: true) is '''
+    assert bHtml(source, format: 'demo') is '''
       >text
     '''
 

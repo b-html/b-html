@@ -19,8 +19,8 @@ class Attribute extends Node
     prev.setAttribute @
     prev
 
-  write: ({ demo }) ->
-    if demo
+  write: ({ format }) ->
+    if format is 'demo'
       indent = [0...@level].map((i) -> ' ').join ''
       if @value?
         "#{indent}#{@name}=\"#{@value}\"\n"

@@ -9,10 +9,10 @@ class EmptyElement extends Node
     if m?
       new EmptyElement { level, name: m[1] }
 
-  write: ({ demo }) ->
+  write: ({ format }) ->
     indent = [0...@level].map((i) -> ' ').join ''
-    if demo
-      attributes = @attributes.map((i) -> i.write { demo }).join ''
+    if format is 'demo'
+      attributes = @attributes.map((i) -> i.write { format }).join ''
       attributes = if attributes.length > 0
         '\n' + attributes + indent + '  ' # attrs is child (+2 level)
       else
@@ -21,7 +21,7 @@ class EmptyElement extends Node
       #{indent}<#{@name}#{attributes}/>\n
       """
     else
-      attributes = @attributes.map((i) -> i.write { demo }).join ' '
+      attributes = @attributes.map((i) -> i.write { format }).join ' '
       attributes = if attributes.length > 0
         ' ' + attributes
       else

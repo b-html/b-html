@@ -28,7 +28,8 @@ parseNode = (level, node) ->
     i.parse level, node
   , null
 
-module.exports = (s, { demo } = { demo: false }) ->
+module.exports = (s, { demo, format } = {}) ->
+  format ?= (if (demo ? false) then 'demo' else 'html')
   root = parseNode 0, '<root'
   root.parent = root
   prev = root
@@ -44,8 +45,8 @@ module.exports = (s, { demo } = { demo: false }) ->
       error.columnNumber = level + 1
       error.message = e.message
       throw error
-  html = root.children.map((i) -> i.write { demo }).join('')
-  if demo
+  html = root.children.map((i) -> i.write { format }).join('')
+  if format is 'demo'
     html.substring(0, html.length - 1)
   else
     html

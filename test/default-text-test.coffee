@@ -5,13 +5,13 @@ describe 'DefaultText (default)', ->
   it 'works', ->
     source = '\n'
     assert bHtml(source) is ''
-    assert bHtml(source, demo: true) is ''
+    assert bHtml(source, format: 'demo') is ''
 
     source = '''
       text
     '''
     assert bHtml(source) is 'text'
-    assert bHtml(source, demo: true) is '''
+    assert bHtml(source, format: 'demo') is '''
       text
     '''
 
@@ -20,7 +20,7 @@ describe 'DefaultText (default)', ->
       line2
     '''
     assert bHtml(source) is 'line1line2'
-    assert bHtml(source, demo: true) is '''
+    assert bHtml(source, format: 'demo') is '''
       line1
       line2
     '''
@@ -30,7 +30,7 @@ describe 'DefaultText (default)', ->
         text
     '''
     assert bHtml(source) is '<p>text</p>'
-    assert bHtml(source, demo: true) is '''
+    assert bHtml(source, format: 'demo') is '''
       <p>
         text
       </p>
@@ -42,7 +42,7 @@ describe 'DefaultText (default)', ->
         line2
     '''
     assert bHtml(source) is '<p>line1line2</p>'
-    assert bHtml(source, demo: true) is '''
+    assert bHtml(source, format: 'demo') is '''
       <p>
         line1
         line2
@@ -52,7 +52,7 @@ describe 'DefaultText (default)', ->
     # NOTE: prevent to remove trailing space
     source = '<p\n  line1\n  \n  line3'
     assert bHtml(source) is '<p>line1line3</p>'
-    assert bHtml(source, demo: true) is '<p>\n  line1\n  \n  line3\n</p>'
+    assert bHtml(source, format: 'demo') is '<p>\n  line1\n  \n  line3\n</p>'
 
   context '(errors)', ->
     it 'works', ->
