@@ -9,8 +9,8 @@ class Comment extends Node
     if m?
       new Comment { level, value: m[1] }
 
-  write: ({ demo }) ->
-    if demo
+  write: ({ format }) ->
+    if format is 'demo'
       indent = [0...@level].map((i) -> ' ').join ''
       "#{indent}<!--#{@value}-->\n"
     else

@@ -6,7 +6,7 @@ describe 'Comment (<!--)', ->
     source = '''
       <!--xyz
     '''
-    assert bHtml(source, demo: true) is '<!--xyz-->'
+    assert bHtml(source, format: 'demo') is '<!--xyz-->'
 
     source = '''
       <!--xyz

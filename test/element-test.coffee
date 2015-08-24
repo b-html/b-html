@@ -7,7 +7,7 @@ describe 'Element (<)', ->
       <p
     '''
     assert bHtml(source) is '<p></p>'
-    assert bHtml(source, demo: true) is '''
+    assert bHtml(source, format: 'demo') is '''
       <p>
       </p>
     '''
@@ -17,7 +17,7 @@ describe 'Element (<)', ->
       <p
     '''
     assert bHtml(source) is '<p></p><p></p>'
-    assert bHtml(source, demo: true) is '''
+    assert bHtml(source, format: 'demo') is '''
       <p>
       </p>
       <p>
@@ -29,7 +29,7 @@ describe 'Element (<)', ->
         <p
     '''
     assert bHtml(source) is '<p><p></p></p>'
-    assert bHtml(source, demo: true) is '''
+    assert bHtml(source, format: 'demo') is '''
       <p>
         <p>
         </p>
@@ -42,7 +42,7 @@ describe 'Element (<)', ->
         <p
     '''
     assert bHtml(source) is '<p><p></p><p></p></p>'
-    assert bHtml(source, demo: true) is '''
+    assert bHtml(source, format: 'demo') is '''
       <p>
         <p>
         </p>

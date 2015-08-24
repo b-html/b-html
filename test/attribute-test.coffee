@@ -9,7 +9,7 @@ describe 'Attribute (@)', ->
           @class foo
       '''
       assert bHtml(source) is '<p class="foo"></p>'
-      assert bHtml(source, demo: true) is '''
+      assert bHtml(source, format: 'demo') is '''
         <p
           class="foo"
           >
@@ -22,7 +22,7 @@ describe 'Attribute (@)', ->
           @id bar
       '''
       assert bHtml(source) is '<p class="foo" id="bar"></p>'
-      assert bHtml(source, demo: true) is '''
+      assert bHtml(source, format: 'demo') is '''
         <p
           class="foo"
           id="bar"
@@ -32,7 +32,7 @@ describe 'Attribute (@)', ->
 
       source = '<p\n  @class ' # with trailing space
       assert bHtml(source) is '<p class=""></p>'
-      assert bHtml(source, demo: true) is '''
+      assert bHtml(source, format: 'demo') is '''
         <p
           class=""
           >
@@ -47,7 +47,7 @@ describe 'Attribute (@)', ->
           @checked
       '''
       assert bHtml(source) is '<input type="checkbox" checked />'
-      assert bHtml(source, demo: true) is '''
+      assert bHtml(source, format: 'demo') is '''
         <input
           type="checkbox"
           checked
@@ -59,7 +59,7 @@ describe 'Attribute (@)', ->
           @data-foo
       '''
       assert bHtml(source) is '<p data-foo></p>'
-      assert bHtml(source, demo: true) is '''
+      assert bHtml(source, format: 'demo') is '''
         <p
           data-foo
           >
