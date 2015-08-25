@@ -43,8 +43,8 @@ parseNode = (level, node) ->
     i.parse level, node
   , null
 
-module.exports = (s, { demo, format } = {}) ->
-  format = getFormat { demo, format }
+module.exports = (s, options = {}) ->
+  format = getFormat options
   root = parseNode 0, '<root'
   root.type = 'root element'
   root.parent = root
@@ -61,4 +61,4 @@ module.exports = (s, { demo, format } = {}) ->
       error.columnNumber = level + 1
       error.message = e.message
       throw error
-  root.write { format }
+  format root, options
