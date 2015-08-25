@@ -25,4 +25,7 @@ class Node
   setAttribute: (attr) ->
     @attributes.push attr
 
+  write: ({ format }) ->
+    format @
+
 module.exports.Node = Node

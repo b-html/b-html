@@ -99,11 +99,4 @@ class Doctype extends Node
     else
       throw new Error 'invalid doctype'
 
-  write: ({ format }) ->
-    if format is 'demo'
-      indent = [0...@level].map((i) -> ' ').join ''
-      "#{indent}<!DOCTYPE #{@value}>\n"
-    else
-      "<!DOCTYPE #{@value}>"
-
 module.exports.Doctype = Doctype
