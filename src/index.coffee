@@ -9,6 +9,19 @@
 {DemoFormatter} = require './formatters/demo-formatter'
 {HtmlFormatter} = require './formatters/html-formatter'
 
+getFormat = ({ demo, format }) ->
+  format ?= if (demo ? false) then 'demo' else 'html'
+  return format if typeof format is 'function'
+  switch format
+    when 'demo'
+      formatter = new DemoFormatter()
+      formatter.format.bind formatter
+    when 'html'
+      formatter = new HtmlFormatter()
+      formatter.format.bind formatter
+    else
+      throw new Error('invalid format: ' + format)
+
 parseLevel = (s) ->
   match = s.match /^(?:  )*/
   level = match[0].length
@@ -31,17 +44,7 @@ parseNode = (level, node) ->
   , null
 
 module.exports = (s, { demo, format } = {}) ->
-  format ?= if (demo ? false) then 'demo' else 'html'
-  if typeof format is 'string'
-    format = switch format
-      when 'demo'
-        formatter = new DemoFormatter()
-        formatter.format.bind formatter
-      when 'html'
-        formatter = new HtmlFormatter()
-        formatter.format.bind formatter
-      else
-        throw new Error('invalid format: ' + format)
+  format = getFormat { demo, format }
   root = parseNode 0, '<root'
   root.type = 'root element'
   root.parent = root
