@@ -9,11 +9,4 @@ class Comment extends Node
     if m?
       new Comment { level, value: m[1] }
 
-  write: ({ format }) ->
-    if format is 'demo'
-      indent = [0...@level].map((i) -> ' ').join ''
-      "#{indent}<!--#{@value}-->\n"
-    else
-      "<!--#{@value}-->"
-
 module.exports.Comment = Comment

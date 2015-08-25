@@ -6,6 +6,21 @@
 {EmptyElement} = require './empty-element'
 {NewLineText} = require './new-line-text'
 {Text} = require './text'
+{DemoFormatter} = require './formatters/demo-formatter'
+{HtmlFormatter} = require './formatters/html-formatter'
+
+getFormat = ({ demo, format }) ->
+  format ?= if (demo ? false) then 'demo' else 'html'
+  return format if typeof format is 'function'
+  switch format
+    when 'demo'
+      formatter = new DemoFormatter()
+      formatter.format.bind formatter
+    when 'html'
+      formatter = new HtmlFormatter()
+      formatter.format.bind formatter
+    else
+      throw new Error('invalid format: ' + format)
 
 parseLevel = (s) ->
   match = s.match /^(?:  )*/
@@ -29,8 +44,9 @@ parseNode = (level, node) ->
   , null
 
 module.exports = (s, { demo, format } = {}) ->
-  format ?= (if (demo ? false) then 'demo' else 'html')
+  format = getFormat { demo, format }
   root = parseNode 0, '<root'
+  root.type = 'root element'
   root.parent = root
   prev = root
   s.split(/\n/).forEach (line, index) ->
@@ -45,8 +61,4 @@ module.exports = (s, { demo, format } = {}) ->
       error.columnNumber = level + 1
       error.message = e.message
       throw error
-  html = root.children.map((i) -> i.write { format }).join('')
-  if format is 'demo'
-    html.substring(0, html.length - 1)
-  else
-    html
+  root.write { format }

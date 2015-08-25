@@ -19,17 +19,4 @@ class Attribute extends Node
     prev.setAttribute @
     prev
 
-  write: ({ format }) ->
-    if format is 'demo'
-      indent = [0...@level].map((i) -> ' ').join ''
-      if @value?
-        "#{indent}#{@name}=\"#{@value}\"\n"
-      else
-        "#{indent}#{@name}\n"
-    else
-      if @value?
-        "#{@name}=\"#{@value}\""
-      else
-        "#{@name}"
-
 module.exports.Attribute = Attribute
