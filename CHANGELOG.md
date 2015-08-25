@@ -1,3 +1,7 @@
+# 0.8.2 (2015-08-25)
+
+* Add the `format` option (undocumented option).
+
 # 0.8.1 (2015-08-16)
 
 * Fix attribute with trailing space. (e.g. `@class ` -> `class=""`).
