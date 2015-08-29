@@ -89,7 +89,7 @@ bHtml('<p') === '<p></p>';
 
 <table>
     <tr>
-      <th>Symbol</th>
+      <th>Prefix</th>
       <th>Type</th>
       <th>Parent</th>
       <th>Child</th>
