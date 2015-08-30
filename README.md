@@ -79,10 +79,54 @@ index.html (compiled b-html && formatted for demo) :
 
 ## API
 
+### signature
+
+`bHtml(source[, options])`
+
+- source
+  - required
+  - string
+  - b-html source string
+- options
+  - optional
+  - object
+  - option list
+    - format ... formatter function
+
+See the following examples.
+
+### no options
+
 ```javascript
+import assert from 'assert';
 import bHtml from 'b-html';
 
-bHtml('<p') === '<p></p>';
+assert(bHtml('<p') === '<p></p>');
+```
+
+### with `format` option
+
+```javascript
+import assert from 'assert';
+import bHtml from 'b-html';
+
+let source = '<p';
+let options = {
+  format(nodes, options) {
+    assert.deepEqual(nodes, [
+      {
+        type: 'element',
+        name: 'p',
+        attributes: [],
+        children: []
+      }
+    ]);
+    assert.deepEquals(options, { format });
+    let n = nodes[0];
+    return `<${n.name}>My formatter!</${n.name}>`;
+  }
+};
+assert(bHtml(source, options) === '<p>My formatter!</p>');
 ```
 
 ## Syntax Reference
