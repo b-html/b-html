@@ -43,10 +43,10 @@ class DemoFormatter
         """
       else # default-text or new-line-text or text
         isNewLine = node.isNewLine
-        content = node.content
+        value = node.value
         children = node.children.map((i) => @_format i, options).join ''
         """
-        #{indent}#{content}\n#{children}
+        #{indent}#{value}\n#{children}
         """
 
 module.exports.DemoFormatter = DemoFormatter

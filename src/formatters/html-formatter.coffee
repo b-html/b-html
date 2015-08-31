@@ -37,11 +37,11 @@ class HtmlFormatter
         "<#{node.name}#{attributes} />"
       else # default-text or new-line-text or text
         isNewLine = node.isNewLine
-        content = node.content
+        value = node.value
         children = node.children.map((i) => @_format i, options).join ''
         if isNewLine
-          "\n#{content}#{children}"
+          "\n#{value}#{children}"
         else
-          "#{content}#{children}"
+          "#{value}#{children}"
 
 module.exports.HtmlFormatter = HtmlFormatter
