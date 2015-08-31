@@ -113,21 +113,50 @@ import bHtml from 'b-html';
 let source = '<p';
 let options = {
   format(nodes, options) {
-    assert.deepEqual(nodes, [
-      {
-        type: 'element',
-        name: 'p',
-        attributes: [],
-        children: []
-      }
-    ]);
-    assert.deepEquals(options, { format });
+    assert(nodes[0].type === 'element');
+    assert(nodes[0].name === 'p');
+    assert.deepEqual(nodes[0].attributes, []);
+    assert.deepEqual(nodes[0].children, []);
+    assert.deepEqual(options, { format });
     let n = nodes[0];
     return `<${n.name}>My formatter!</${n.name}>`;
   }
 };
 assert(bHtml(source, options) === '<p>My formatter!</p>');
 ```
+
+#### formatter signature
+
+`format(nodes: Array<Node>, options: {}): any`
+
+- Node
+  - type: string
+- Element extends Node
+  - (type === 'element')
+  - name: string
+  - attributes: Array<Attribute>
+  - children: Array<Node>
+- EmptyElement extends Node
+  - (type === 'empty element')
+  - name: string
+  - attributes: Array<Attribute>
+  - children: Array<Node>
+- Comment extends Node
+  - (type === 'comment')
+  - value: string
+- Doctype extends Node
+  - (type === 'doctype')
+  - value: string
+- Attribute extends Node
+  - (type === 'attribute')
+  - name: string
+  - value: string
+- Text: string
+  - (type === 'text')
+  - value: string
+- NewLineText
+  - (type === 'new line text')
+  - value: string
 
 ## Syntax Reference
 
