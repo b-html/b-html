@@ -61,4 +61,4 @@ module.exports = (s, options = {}) ->
       error.columnNumber = level + 1
       error.message = e.message
       throw error
-  format root, options
+  format root.children, options

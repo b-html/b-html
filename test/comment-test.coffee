@@ -2,16 +2,19 @@ assert = require 'power-assert'
 bHtml = require './'
 
 describe 'Comment (<!--)', ->
-  it 'works', ->
-    source = '''
-      <!--xyz
-    '''
-    assert bHtml(source, format: 'demo') is '<!--xyz-->'
-
-    source = '''
-      <!--xyz
-    '''
-    assert bHtml(source) is '<!--xyz-->'
+  context '1', ->
+    it 'works', ->
+      source = '''
+        <!--xyz
+      '''
+      format = (nodes, options) ->
+        assert nodes.length is 1
+        assert nodes[0].type is 'comment'
+        assert nodes[0].value is 'xyz'
+        assert.deepEqual options, { format }
+      bHtml source, { format }
+      assert bHtml(source) is '<!--xyz-->'
+      assert bHtml(source, format: 'demo') is '<!--xyz-->'
 
   context '(errors)', ->
     it 'works', ->

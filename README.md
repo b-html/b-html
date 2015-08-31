@@ -79,18 +79,91 @@ index.html (compiled b-html && formatted for demo) :
 
 ## API
 
+### signature
+
+`bHtml(source[, options])`
+
+- source
+  - required
+  - string
+  - b-html source string
+- options
+  - optional
+  - object
+  - option list
+    - format ... formatter function
+
+See the following examples.
+
+### no options
+
 ```javascript
+import assert from 'assert';
 import bHtml from 'b-html';
 
-bHtml('<p') === '<p></p>';
+assert(bHtml('<p') === '<p></p>');
 ```
+
+### with `format` option
+
+```javascript
+import assert from 'assert';
+import bHtml from 'b-html';
+
+let source = '<p';
+let options = {
+  format(nodes, options) {
+    assert(nodes[0].type === 'element');
+    assert(nodes[0].name === 'p');
+    assert.deepEqual(nodes[0].attributes, []);
+    assert.deepEqual(nodes[0].children, []);
+    assert.deepEqual(options, { format });
+    let n = nodes[0];
+    return `<${n.name}>My formatter!</${n.name}>`;
+  }
+};
+assert(bHtml(source, options) === '<p>My formatter!</p>');
+```
+
+#### formatter signature
+
+`format(nodes: Array<Node>, options: {}): any`
+
+- Node
+  - type: string
+- Element extends Node
+  - (type === 'element')
+  - name: string
+  - attributes: Array<Attribute>
+  - children: Array<Node>
+- EmptyElement extends Node
+  - (type === 'empty element')
+  - name: string
+  - attributes: Array<Attribute>
+  - children: Array<Node>
+- Comment extends Node
+  - (type === 'comment')
+  - value: string
+- Doctype extends Node
+  - (type === 'doctype')
+  - value: string
+- Attribute extends Node
+  - (type === 'attribute')
+  - name: string
+  - value: string
+- Text: string
+  - (type === 'text')
+  - value: string
+- NewLineText
+  - (type === 'new line text')
+  - value: string
 
 ## Syntax Reference
 
 <table>
     <tr>
-      <th>Symbol</th>
-      <th>Name</th>
+      <th>Prefix</th>
+      <th>Type</th>
       <th>Parent</th>
       <th>Child</th>
       <th>Examples</th>
@@ -104,42 +177,42 @@ bHtml('<p') === '<p></p>';
     </tr>
     <tr>
       <td><code>&lt;</code></td>
-      <td>Element</td>
+      <td>'element'</td>
       <td>MAY</td>
       <td>MAY</td>
       <td><code>&lt;p</code> -> <code>&lt;p&gt;&lt;/p&gt;</code></td>
     </tr>
     <tr>
       <td><code>&lt;/</code></td>
-      <td>Empty Element</td>
+      <td>'empty element'</td>
       <td>MAY</td>
       <td>MUST NOT</td>
       <td><code>&lt;/img</code> -> <code>&lt;img /&gt;</code></td>
     </tr>
     <tr>
       <td><code>&lt;!--</code></td>
-      <td>Comment</td>
+      <td>'comment'</td>
       <td>MAY</td>
       <td>MUST NOT</td>
       <td><code>&lt;--xyz</code> -> <code>&lt;!--xyz--&gt;</code></td>
     </tr>
     <tr>
       <td><code>&lt;!doctype html</code></td>
-      <td>Doctype</td>
+      <td>'doctype'</td>
       <td>MAY</td>
       <td>MUST NOT</td>
       <td><code>&lt;!doctype html</code> -> <code>&lt;!DOCTYPE html&gt;</code><br />See: <a href="#doctypes">#doctypes</a></td>
     </tr>
     <tr>
       <td><code>@</code></td>
-      <td>Attribute</td>
+      <td>'attribute'</td>
       <td>MUST</td>
       <td>MUST NOT</td>
       <td><code>@class foo</code> -> <code>class="foo"</code></td>
     </tr>
     <tr>
       <td><code>&gt;</code></td>
-      <td>Text</td>
+      <td>'text'</td>
       <td>MAY</td>
       <td>MUST NOT</td>
       <td>
@@ -152,7 +225,7 @@ bHtml('<p') === '<p></p>';
     </tr>
     <tr>
       <td><code>|</code></td>
-      <td>New Line Text</td>
+      <td>'new line text'</td>
       <td>MAY</td>
       <td>MUST NOT</td>
       <td>
@@ -164,8 +237,8 @@ bHtml('<p') === '<p></p>';
       </td>
     </tr>
     <tr>
-      <td>others</td>
-      <td>Default Text</td>
+      <td>(others)</td>
+      <td>'text' (default)</td>
       <td>MAY</td>
       <td>MUST NOT</td>
       <td><code>text</code> -> <code>text</code></td>
