@@ -1,3 +1,7 @@
+# 0.9.0 (2015-09-01)
+
+* Add the `format` option.
+
 # 0.8.2 (2015-08-25)
 
 * Add the `format` option (undocumented option).
