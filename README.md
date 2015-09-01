@@ -5,11 +5,60 @@ An easy HTML syntax sugar.
 Concepts:
 
 - It's just HTML (like a [CoffeeScript](http://coffeescript.org))
-- Simple syntax
-- Off-side rule
-- Line-oriented
+- [Off-side rule](https://en.wikipedia.org/wiki/Off-side_rule)
+- [Simple syntax](#syntax-reference)
 
-See: [Demo](http://b-html.github.io/b-html-demo/) ( [b-html/b-html-demo](https://github.com/b-html/b-html-demo/) )
+[Try b-html (real-time preview demo)][demo]
+
+## Simple Example
+
+index.bhtml (b-html) :
+
+```b-html
+<!doctype html
+<html
+  <head
+    </meta
+      @charset UTF-8
+    <title
+      b-html example
+  <body
+    <!--comment example
+    <p
+      Hello, b-html!
+      <a
+        @href https://github.com/bouzuya
+        >@bouzuya
+```
+
+index.html (compiled b-html && formatted for demo) :
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta
+      charset="utf-8"
+      />
+    <title>
+      b-html example
+    </title>
+  </head>
+  <body>
+    <!--comment eample-->
+    <p>
+      Hello, b-html!
+      <a
+        href="https://github.com/bouzuya"
+        >
+        @bouzuya
+      </a>
+    </p>
+  </body>
+</html>
+```
+
+[Try b-html (real-time preview demo)][demo]
 
 ## Installation
 
@@ -17,148 +66,35 @@ See: [Demo](http://b-html.github.io/b-html-demo/) ( [b-html/b-html-demo](https:/
 $ npm install b-html
 ```
 
-## Syntax
+See also: [#api](#api)
 
-index.bhtml (b-html) :
+### with CLI
 
-```b-html
-<!doctype html
-<html
-  @lang en
-  <head
-    </meta
-      @charset utf-8
-    <title
-      TITLE
-  <body
-    <!--comment
-    <h1
-      @class title
-      HEADLINE
-    <p
-      Hello, b-html!
-      >@bouzuya
-      </img
-        @alt sample image
-        @src /images/sample.png
+```
+$ npm install -g b-html-cli
 ```
 
-index.html (compiled b-html && formatted for demo) :
+See also: [b-html/b-html-cli][]
 
-```html
-<!DOCTYPE html>
-<html
-  lang="en"
-  >
-  <head>
-    <meta
-      charset="utf-8"
-      />
-    <title>
-      TITLE
-    </title>
-  </head>
-  <body>
-    <!--comment-->
-    <h1
-      class="title"
-      >
-      HEADLINE
-    </h1>
-    <p>
-      Hello, b-html!
-      @bouzuya
-      <img
-        alt="sample image"
-        src="/images/sample.png"
-        />
-    </p>
-  </body>
-</html>
+### with gulp
+
+```
+$ npm install gulp-b-html
 ```
 
-## API
+See also: [b-html/gulp-b-html][]
 
-### signature
+### with browserify
 
-`bHtml(source[, options])`
-
-- source
-  - required
-  - string
-  - b-html source string
-- options
-  - optional
-  - object
-  - option list
-    - format ... formatter function
-
-See the following examples.
-
-### no options
-
-```javascript
-import assert from 'assert';
-import bHtml from 'b-html';
-
-assert(bHtml('<p') === '<p></p>');
+```
+$ npm install b-htmlify
 ```
 
-### with `format` option
-
-```javascript
-import assert from 'assert';
-import bHtml from 'b-html';
-
-let source = '<p';
-let options = {
-  format(nodes, options) {
-    assert(nodes[0].type === 'element');
-    assert(nodes[0].name === 'p');
-    assert.deepEqual(nodes[0].attributes, []);
-    assert.deepEqual(nodes[0].children, []);
-    assert.deepEqual(options, { format });
-    let n = nodes[0];
-    return `<${n.name}>My formatter!</${n.name}>`;
-  }
-};
-assert(bHtml(source, options) === '<p>My formatter!</p>');
-```
-
-#### formatter signature
-
-`format(nodes: Array<Node>, options: {}): any`
-
-- Node
-  - type: string
-- Element extends Node
-  - (type === 'element')
-  - name: string
-  - attributes: Array<Attribute>
-  - children: Array<Node>
-- EmptyElement extends Node
-  - (type === 'empty element')
-  - name: string
-  - attributes: Array<Attribute>
-  - children: Array<Node>
-- Comment extends Node
-  - (type === 'comment')
-  - value: string
-- Doctype extends Node
-  - (type === 'doctype')
-  - value: string
-- Attribute extends Node
-  - (type === 'attribute')
-  - name: string
-  - value: string
-- Text: string
-  - (type === 'text')
-  - value: string
-- NewLineText
-  - (type === 'new line text')
-  - value: string
+See also: [b-html/b-htmlify][]
 
 ## Syntax Reference
+
+`indent (spaces)` + `prefix` + `content`
 
 <table>
     <tr>
@@ -167,13 +103,6 @@ assert(bHtml(source, options) === '<p>My formatter!</p>');
       <th>Parent</th>
       <th>Child</th>
       <th>Examples</th>
-    </tr>
-    <tr>
-      <td><code>  </code> (2 space)</td>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
-      <td>See: <a href="https://en.wikipedia.org/wiki/Off-side_rule">Off-side rule</a></td>
     </tr>
     <tr>
       <td><code>&lt;</code></td>
@@ -245,7 +174,7 @@ assert(bHtml(source, options) === '<p>My formatter!</p>');
     </tr>
 </table>
 
-Try: [Demo](http://b-html.github.io/b-html-demo/) ( [b-html/b-html-demo](https://github.com/b-html/b-html-demo/) )
+[Try b-html (real-time preview demo)][demo]
 
 ### Doctypes
 
@@ -273,16 +202,93 @@ Try: [Demo](http://b-html.github.io/b-html-demo/) ( [b-html/b-html-demo](https:/
 - `<!doctype xhtml mobile 1.2` -> (XHTML Mobile 1.2)
 - `<!doctype html PUBLIC ...` -> <!DOCTYPE html PUBLIC ...>
 
+## API
+
+### signature
+
+- `bHtml(source: string): string`
+- `bHtml(source: string, options: { format: any }): any`
+
+params:
+
+- source ... b-html source string.
+- options.format ... formatter function. see also: [#formatter signature](#formatter-signature)
+
+See the following examples.
+
+### no options
+
+```javascript
+import assert from 'assert';
+import bHtml from 'b-html';
+
+assert(bHtml('<p') === '<p></p>');
+```
+
+### with `format` option
+
+```javascript
+import assert from 'assert';
+import bHtml from 'b-html';
+
+let source = '<p';
+let options = {
+  format(nodes, options) {
+    assert(nodes[0].type === 'element');
+    assert(nodes[0].name === 'p');
+    assert.deepEqual(nodes[0].attributes, []);
+    assert.deepEqual(nodes[0].children, []);
+    assert.deepEqual(options, { format });
+    let n = nodes[0];
+    return `<${n.name}>My formatter!</${n.name}>`;
+  }
+};
+assert(bHtml(source, options) === '<p>My formatter!</p>');
+```
+
+#### formatter signature
+
+`format(nodes: Array<Node>, options: {}): any`
+
+- Node
+  - type: string
+- Element extends Node
+  - (type === 'element')
+  - name: string
+  - attributes: Array<Attribute>
+  - children: Array<Node>
+- EmptyElement extends Node
+  - (type === 'empty element')
+  - name: string
+  - attributes: Array<Attribute>
+  - children: Array<Node>
+- Comment extends Node
+  - (type === 'comment')
+  - value: string
+- Doctype extends Node
+  - (type === 'doctype')
+  - value: string
+- Attribute extends Node
+  - (type === 'attribute')
+  - name: string
+  - value: string
+- Text: string
+  - (type === 'text')
+  - value: string
+- NewLineText
+  - (type === 'new line text')
+  - value: string
+
 ## Related Projects
 
-- [b-html/b-html-cli](https://github.com/b-html/b-html-cli) ... A CLI for b-html (b-html to HTML converter).
-- [b-html/html2bhtml](https://github.com/b-html/html2bhtml) ... HTML to b-html converter.
-- [b-html/gulp-b-html](https://github.com/b-html/gulp-b-html) ... A gulp plugin for b-html.
-- [b-html/b-htmlify](https://github.com/b-html/b-htmlify) ... A browserify transform for b-html.
-- [b-html/b-html-demo](https://github.com/b-html/b-html-demo) ... A demo for b-html.
-- [zakuro9715/vim-b-html](https://github.com/zakuro9715/vim-b-html) ... b-html syntaxt highlighting for vim.
-- [b-html/atom-language-b-html](https://github.com/b-html/atom-language-b-html) ... b-html support in Atom.
-- [b-html/b-html-logo](https://github.com/b-html/b-html-logo) ... A logo for b-html.
+- [b-html/b-html-cli][] ... A CLI for b-html (b-html <-> HTML converter).
+- [b-html/gulp-b-html][] ... A gulp plugin for b-html.
+- [b-html/b-htmlify][] ... A browserify transform for b-html.
+- [b-html/b-html-demo][] ... A demo for b-html.
+- [zakuro9715/vim-b-html][] ... b-html syntaxt highlighting for vim.
+- [b-html/atom-language-b-html][] ... b-html support in Atom.
+- [b-html/b-html-logo][] ... A logo for b-html.
+- [b-html/html2bhtml][] ... HTML to b-html converter.
 
 ## Badges
 
@@ -300,3 +306,12 @@ Try: [Demo](http://b-html.github.io/b-html-demo/) ( [b-html/b-html-demo](https:/
 [user]: https://github.com/bouzuya
 [email]: mailto:m@bouzuya.net
 [url]: http://bouzuya.net
+[demo]: http://b-html.org/b-html-demo/
+[b-html/atom-language-b-html]: https://github.com/b-html/atom-language-b-html
+[b-html/b-html-cli]: https://github.com/b-html/b-html-cli
+[b-html/b-html-demo]: https://github.com/b-html/b-html-demo
+[b-html/b-html-logo]: https://github.com/b-html/b-html-logo
+[b-html/b-htmlify]: https://github.com/b-html/b-htmlify
+[b-html/gulp-b-html]: https://github.com/b-html/gulp-b-html
+[b-html/html2bhtml]: https://github.com/b-html/html2bhtml
+[zakuro9715/vim-b-html]: https://github.com/zakuro9715/vim-b-html
