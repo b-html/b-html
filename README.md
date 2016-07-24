@@ -10,6 +10,8 @@ Concepts:
 
 [Try b-html (real-time preview demo)][demo]
 
+Twitter hashtag is [#bhtml](https://twitter.com/hashtag/bhtml).
+
 ## Simple Example
 
 index.bhtml (b-html) :
