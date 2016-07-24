@@ -292,8 +292,12 @@ assert(bHtml(source, options) === '<p>My formatter!</p>');
 
 ## Badges
 
+[![npm version][npm-badge-url]][npm-url]
 [![Circle CI](https://circleci.com/gh/b-html/b-html.svg?style=svg)](https://circleci.com/gh/b-html/b-html)
 [![Join the chat at https://gitter.im/b-html/b-html](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/b-html/b-html)
+
+[npm-badge-url]: https://badge.fury.io/js/b-html.svg
+[npm-url]: https://www.npmjs.com/package/b-html
 
 ## License
 
